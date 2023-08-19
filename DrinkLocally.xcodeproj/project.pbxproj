@@ -44,6 +44,7 @@
 		E62D66F52A9133F90029EB97 /* DrinkLocallyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrinkLocallyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E62D66F92A9133F90029EB97 /* DrinkLocallyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkLocallyUITests.swift; sourceTree = "<group>"; };
 		E62D66FB2A9133F90029EB97 /* DrinkLocallyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkLocallyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E62D67082A9141810029EB97 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +75,7 @@
 		E62D66D22A9133F80029EB97 = {
 			isa = PBXGroup;
 			children = (
+				E62D67082A9141810029EB97 /* .gitignore */,
 				E62D66DD2A9133F80029EB97 /* DrinkLocally */,
 				E62D66EE2A9133F90029EB97 /* DrinkLocallyTests */,
 				E62D66F82A9133F90029EB97 /* DrinkLocallyUITests */,
