@@ -37,7 +37,6 @@ class LocationService: NSObject, ObservableObject {
             permissionGiven = false
         }
     }
-    
 }
 
 extension LocationService: CLLocationManagerDelegate {

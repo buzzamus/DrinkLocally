@@ -10,7 +10,7 @@ import CoreLocation
 
 class MockLocationManager: CLLocationManager {
     var mockLocation: CLLocation?
-    var mockAuthorizationStatus: CLAuthorizationStatus = .notDetermined
+    var mockAuthorizationStatus: CLAuthorizationStatus = .authorizedWhenInUse
     
     override init() {
         super.init()
@@ -20,7 +20,7 @@ class MockLocationManager: CLLocationManager {
         return mockLocation
     }
     
-    func authorizationStatus() -> CLAuthorizationStatus {
+    override var authorizationStatus: CLAuthorizationStatus {
         return mockAuthorizationStatus
     }
 }

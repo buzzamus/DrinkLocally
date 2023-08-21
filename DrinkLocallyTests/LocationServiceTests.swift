@@ -22,19 +22,17 @@ final class LocationServiceTests: XCTestCase {
         locationManagerMock = nil
     }
     
-    func test_locationService_getsCurrentLocationWhenPermissionGiven() {
+    func test_locationService_returnsCurrentLocation() {
+        XCUIDevice.shared.location = XCUILocation(location: CLLocation(latitude: 37.334886, longitude: -122.008988))
         let location = CLLocation(latitude: -44.0321, longitude: 81.2435)
         locationManagerMock.mockAuthorizationStatus = .authorizedWhenInUse
         locationManagerMock.mockLocation = location
+        let completionExpectation = expectation(description: "Completion expectation")
         
         sut.getLocation()
+        completionExpectation.fulfill()
         
-        print("----------------------")
-        print(locationManagerMock.location?.coordinate.latitude)
-        print(sut.permissionGiven)
-        print(sut.currentLocation?.coordinate.latitude)
-        
-        
+        wait(for: [completionExpectation], timeout: 1)
         XCTAssertEqual(sut.currentLocation?.coordinate.latitude, location.coordinate.latitude)
     }
 }
