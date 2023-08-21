@@ -14,7 +14,7 @@
 		E62D66F02A9133F90029EB97 /* DrinkLocallyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D66EF2A9133F90029EB97 /* DrinkLocallyTests.swift */; };
 		E62D66FA2A9133F90029EB97 /* DrinkLocallyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D66F92A9133F90029EB97 /* DrinkLocallyUITests.swift */; };
 		E62D66FC2A9133F90029EB97 /* DrinkLocallyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D66FB2A9133F90029EB97 /* DrinkLocallyUITestsLaunchTests.swift */; };
-		E62D670B2A9143A80029EB97 /* APIClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D670A2A9143A80029EB97 /* APIClientMock.swift */; };
+		E62D670B2A9143A80029EB97 /* MockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D670A2A9143A80029EB97 /* MockAPIClient.swift */; };
 		E62D670E2A9143C20029EB97 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D670D2A9143C20029EB97 /* APIClient.swift */; };
 		E62D67142A9146F00029EB97 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D67132A9146F00029EB97 /* Result.swift */; };
 		E62D67162A91470F0029EB97 /* Brewery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D67152A91470F0029EB97 /* Brewery.swift */; };
@@ -52,7 +52,7 @@
 		E62D66F92A9133F90029EB97 /* DrinkLocallyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkLocallyUITests.swift; sourceTree = "<group>"; };
 		E62D66FB2A9133F90029EB97 /* DrinkLocallyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkLocallyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E62D67082A9141810029EB97 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		E62D670A2A9143A80029EB97 /* APIClientMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientMock.swift; sourceTree = "<group>"; };
+		E62D670A2A9143A80029EB97 /* MockAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIClient.swift; sourceTree = "<group>"; };
 		E62D670D2A9143C20029EB97 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		E62D67132A9146F00029EB97 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		E62D67152A91470F0029EB97 /* Brewery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brewery.swift; sourceTree = "<group>"; };
@@ -153,7 +153,7 @@
 		E62D67092A91438F0029EB97 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				E62D670A2A9143A80029EB97 /* APIClientMock.swift */,
+				E62D670A2A9143A80029EB97 /* MockAPIClient.swift */,
 				E69F6DD12A9290BB00047622 /* MockLocationManager.swift */,
 			);
 			path = Mocks;
@@ -344,7 +344,7 @@
 				E69F6DD22A9290BC00047622 /* MockLocationManager.swift in Sources */,
 				E69F6DD52A9292A900047622 /* LocationServiceTests.swift in Sources */,
 				E62D66F02A9133F90029EB97 /* DrinkLocallyTests.swift in Sources */,
-				E62D670B2A9143A80029EB97 /* APIClientMock.swift in Sources */,
+				E62D670B2A9143A80029EB97 /* MockAPIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

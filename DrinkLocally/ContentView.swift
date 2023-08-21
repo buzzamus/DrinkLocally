@@ -18,7 +18,7 @@ struct ContentView: View {
             Text(String(locationService.currentLocation?.coordinate.latitude ?? -66.6666))
             Text(String(locationService.currentLocation?.coordinate.longitude ?? -66.6666))
         }
-        .onAppear(perform: locationService.getLocation)
+        .onAppear(perform: locationService.retrieveLocation)
         .padding()
     }
 }

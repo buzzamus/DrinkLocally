@@ -27,7 +27,7 @@ final class LocationServiceTests: XCTestCase {
         locationManagerMock.mockAuthorizationStatus = .authorizedWhenInUse
         locationManagerMock.mockLocation = location
         
-        sut.getLocation()
+        sut.retrieveLocation()
         
         XCTAssertEqual(sut.currentLocation?.coordinate.latitude, location.coordinate.latitude)
         XCTAssertTrue(sut.permissionGiven)
@@ -36,7 +36,7 @@ final class LocationServiceTests: XCTestCase {
     func test_locationService_handlesWhenLocationAuthorizationNotGiven() {
         locationManagerMock.mockAuthorizationStatus = .denied
         
-        sut.getLocation()
+        sut.retrieveLocation()
         
         XCTAssertNil(sut.currentLocation)
         XCTAssertFalse(sut.permissionGiven)

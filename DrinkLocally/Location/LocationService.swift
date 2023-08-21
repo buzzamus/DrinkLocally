@@ -20,10 +20,16 @@ class LocationService: NSObject, ObservableObject {
         self.locationManager.delegate = self
     }
     
-    func getLocation() {
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestLocation()
+    func retrieveLocation() {
+        requestLocationAuthorization()
         setLocation()
+    }
+    
+    private func requestLocationAuthorization() {
+        if permissionGiven == false {
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.requestLocation()
+        }
     }
     
     private func setLocation() {
