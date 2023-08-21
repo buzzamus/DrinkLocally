@@ -14,6 +14,13 @@
 		E62D66F02A9133F90029EB97 /* DrinkLocallyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D66EF2A9133F90029EB97 /* DrinkLocallyTests.swift */; };
 		E62D66FA2A9133F90029EB97 /* DrinkLocallyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D66F92A9133F90029EB97 /* DrinkLocallyUITests.swift */; };
 		E62D66FC2A9133F90029EB97 /* DrinkLocallyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D66FB2A9133F90029EB97 /* DrinkLocallyUITestsLaunchTests.swift */; };
+		E62D670B2A9143A80029EB97 /* MockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D670A2A9143A80029EB97 /* MockAPIClient.swift */; };
+		E62D670E2A9143C20029EB97 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D670D2A9143C20029EB97 /* APIClient.swift */; };
+		E62D67142A9146F00029EB97 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D67132A9146F00029EB97 /* Result.swift */; };
+		E62D67162A91470F0029EB97 /* Brewery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D67152A91470F0029EB97 /* Brewery.swift */; };
+		E69F6DCC2A92894D00047622 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69F6DCB2A92894D00047622 /* LocationService.swift */; };
+		E69F6DD22A9290BC00047622 /* MockLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69F6DD12A9290BB00047622 /* MockLocationManager.swift */; };
+		E69F6DD52A9292A900047622 /* LocationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69F6DD42A9292A900047622 /* LocationServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +52,13 @@
 		E62D66F92A9133F90029EB97 /* DrinkLocallyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkLocallyUITests.swift; sourceTree = "<group>"; };
 		E62D66FB2A9133F90029EB97 /* DrinkLocallyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkLocallyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E62D67082A9141810029EB97 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		E62D670A2A9143A80029EB97 /* MockAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIClient.swift; sourceTree = "<group>"; };
+		E62D670D2A9143C20029EB97 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		E62D67132A9146F00029EB97 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		E62D67152A91470F0029EB97 /* Brewery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brewery.swift; sourceTree = "<group>"; };
+		E69F6DCB2A92894D00047622 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		E69F6DD12A9290BB00047622 /* MockLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationManager.swift; sourceTree = "<group>"; };
+		E69F6DD42A9292A900047622 /* LocationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServiceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +110,11 @@
 		E62D66DD2A9133F80029EB97 /* DrinkLocally */ = {
 			isa = PBXGroup;
 			children = (
+				E62D67122A9145CA0029EB97 /* Location */,
+				E62D67112A9145A60029EB97 /* ViewModels */,
+				E62D67102A9145970029EB97 /* Models */,
+				E62D670F2A91458D0029EB97 /* Views */,
+				E62D670C2A9143B30029EB97 /* Network */,
 				E62D66DE2A9133F80029EB97 /* DrinkLocallyApp.swift */,
 				E62D66E02A9133F80029EB97 /* ContentView.swift */,
 				E62D66E22A9133F90029EB97 /* Assets.xcassets */,
@@ -115,7 +134,9 @@
 		E62D66EE2A9133F90029EB97 /* DrinkLocallyTests */ = {
 			isa = PBXGroup;
 			children = (
+				E62D67092A91438F0029EB97 /* Mocks */,
 				E62D66EF2A9133F90029EB97 /* DrinkLocallyTests.swift */,
+				E69F6DD42A9292A900047622 /* LocationServiceTests.swift */,
 			);
 			path = DrinkLocallyTests;
 			sourceTree = "<group>";
@@ -127,6 +148,54 @@
 				E62D66FB2A9133F90029EB97 /* DrinkLocallyUITestsLaunchTests.swift */,
 			);
 			path = DrinkLocallyUITests;
+			sourceTree = "<group>";
+		};
+		E62D67092A91438F0029EB97 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				E62D670A2A9143A80029EB97 /* MockAPIClient.swift */,
+				E69F6DD12A9290BB00047622 /* MockLocationManager.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		E62D670C2A9143B30029EB97 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				E62D670D2A9143C20029EB97 /* APIClient.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		E62D670F2A91458D0029EB97 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E62D67102A9145970029EB97 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E62D67132A9146F00029EB97 /* Result.swift */,
+				E62D67152A91470F0029EB97 /* Brewery.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E62D67112A9145A60029EB97 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		E62D67122A9145CA0029EB97 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				E69F6DCB2A92894D00047622 /* LocationService.swift */,
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +330,10 @@
 			files = (
 				E62D66E12A9133F80029EB97 /* ContentView.swift in Sources */,
 				E62D66DF2A9133F80029EB97 /* DrinkLocallyApp.swift in Sources */,
+				E62D67142A9146F00029EB97 /* Result.swift in Sources */,
+				E62D67162A91470F0029EB97 /* Brewery.swift in Sources */,
+				E69F6DCC2A92894D00047622 /* LocationService.swift in Sources */,
+				E62D670E2A9143C20029EB97 /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,7 +341,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E69F6DD22A9290BC00047622 /* MockLocationManager.swift in Sources */,
+				E69F6DD52A9292A900047622 /* LocationServiceTests.swift in Sources */,
 				E62D66F02A9133F90029EB97 /* DrinkLocallyTests.swift in Sources */,
+				E62D670B2A9143A80029EB97 /* MockAPIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +499,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = DrinkLocally;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your current location in order to find nearby breweries.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -453,6 +530,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = DrinkLocally;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your current location in order to find nearby breweries.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
