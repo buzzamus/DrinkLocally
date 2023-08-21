@@ -30,10 +30,7 @@ class LocationService: NSObject, ObservableObject {
         if (locationManager.authorizationStatus == .authorizedWhenInUse || locationManager.authorizationStatus == .authorizedAlways) {
             currentLocation = locationManager.location
             permissionGiven = true
-            print("permission given")
         } else {
-            print("permissin not given")
-            print(locationManager.authorizationStatus)
             permissionGiven = false
         }
     }

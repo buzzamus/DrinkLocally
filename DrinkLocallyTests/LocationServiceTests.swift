@@ -12,6 +12,7 @@ import CoreLocation
 final class LocationServiceTests: XCTestCase {
     var locationManagerMock: MockLocationManager!
     var sut: LocationService!
+    let location = CLLocation(latitude: -44.0321, longitude: 81.2435)
 
     override func setUpWithError() throws {
         locationManagerMock = MockLocationManager()
@@ -23,16 +24,22 @@ final class LocationServiceTests: XCTestCase {
     }
     
     func test_locationService_returnsCurrentLocation() {
-        XCUIDevice.shared.location = XCUILocation(location: CLLocation(latitude: 37.334886, longitude: -122.008988))
-        let location = CLLocation(latitude: -44.0321, longitude: 81.2435)
         locationManagerMock.mockAuthorizationStatus = .authorizedWhenInUse
         locationManagerMock.mockLocation = location
-        let completionExpectation = expectation(description: "Completion expectation")
         
         sut.getLocation()
-        completionExpectation.fulfill()
         
-        wait(for: [completionExpectation], timeout: 1)
         XCTAssertEqual(sut.currentLocation?.coordinate.latitude, location.coordinate.latitude)
+        XCTAssertTrue(sut.permissionGiven)
+        XCTAssertFalse(sut.locationError)
+    }
+    
+    func test_locationService_handlesWhenLocationAuthorizationNotGiven() {
+        locationManagerMock.mockAuthorizationStatus = .denied
+        
+        sut.getLocation()
+        
+        XCTAssertNil(sut.currentLocation)
+        XCTAssertFalse(sut.permissionGiven)
     }
 }
