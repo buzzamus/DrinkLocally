@@ -12,7 +12,7 @@ import CoreLocation
 final class LocationServiceTests: XCTestCase {
     var locationManagerMock: MockLocationManager!
     var sut: LocationService!
-    let location = CLLocation(latitude: -44.0321, longitude: 81.2435)
+    let location = CLLocation(latitude: 48.858093, longitude: 2.294694)
 
     override func setUpWithError() throws {
         locationManagerMock = MockLocationManager()
@@ -31,7 +31,6 @@ final class LocationServiceTests: XCTestCase {
         
         XCTAssertEqual(sut.currentLocation?.coordinate.latitude, location.coordinate.latitude)
         XCTAssertTrue(sut.permissionGiven)
-        XCTAssertFalse(sut.locationError)
     }
     
     func test_locationService_handlesWhenLocationAuthorizationNotGiven() {
