@@ -21,6 +21,8 @@
 		E69F6DCC2A92894D00047622 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69F6DCB2A92894D00047622 /* LocationService.swift */; };
 		E69F6DD22A9290BC00047622 /* MockLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69F6DD12A9290BB00047622 /* MockLocationManager.swift */; };
 		E69F6DD52A9292A900047622 /* LocationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69F6DD42A9292A900047622 /* LocationServiceTests.swift */; };
+		E6F618912A9436000011811C /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F618902A9436000011811C /* Endpoints.swift */; };
+		E6F618932A943D5E0011811C /* BreweryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F618922A943D5E0011811C /* BreweryRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		E69F6DCB2A92894D00047622 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		E69F6DD12A9290BB00047622 /* MockLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationManager.swift; sourceTree = "<group>"; };
 		E69F6DD42A9292A900047622 /* LocationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServiceTests.swift; sourceTree = "<group>"; };
+		E6F618902A9436000011811C /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
+		E6F618922A943D5E0011811C /* BreweryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreweryRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +167,8 @@
 			isa = PBXGroup;
 			children = (
 				E62D670D2A9143C20029EB97 /* APIClient.swift */,
+				E6F618902A9436000011811C /* Endpoints.swift */,
+				E6F618922A943D5E0011811C /* BreweryRequest.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -328,9 +334,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6F618932A943D5E0011811C /* BreweryRequest.swift in Sources */,
 				E62D66E12A9133F80029EB97 /* ContentView.swift in Sources */,
 				E62D66DF2A9133F80029EB97 /* DrinkLocallyApp.swift in Sources */,
 				E62D67142A9146F00029EB97 /* Result.swift in Sources */,
+				E6F618912A9436000011811C /* Endpoints.swift in Sources */,
 				E62D67162A91470F0029EB97 /* Brewery.swift in Sources */,
 				E69F6DCC2A92894D00047622 /* LocationService.swift in Sources */,
 				E62D670E2A9143C20029EB97 /* APIClient.swift in Sources */,

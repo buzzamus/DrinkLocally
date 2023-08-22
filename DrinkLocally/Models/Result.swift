@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct Result {
+struct Result: Decodable {
     var breweries: [Brewery]
 }
