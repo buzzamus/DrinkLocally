@@ -12,19 +12,15 @@ class APIClient {
         case invalidURL
     }
 //    static let shared = APIClient()
-    private let urlSession: URLSession
+    lazy var session: Networking = URLSession.shared
 
-    init(urlSession: URLSession = .shared) {
-        self.urlSession = urlSession
+    init(networking: Networking = URLSession.shared) {
+        self.session = networking
     }
     
-    func fetchBreweries() async throws -> Result {
-        guard let url = Endpoints.breweriesListURL else {
-            throw URLError.invalidURL
-        }
-        
-        let (data, _) = try await urlSession.data(from: url)
-        let decoder = JSONDecoder()
-        return try decoder.decode(Result.self, from: data)
+    func fetchBreweries(url: URL) async throws -> [Brewery] {
+        let request = URLRequest(url: url)
+        let (data, _) = try await session.data(for: request, delegate: nil)
+        return try JSONDecoder().decode([Brewery].self, from: data)
     }
 }

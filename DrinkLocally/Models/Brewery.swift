@@ -11,8 +11,7 @@ struct Brewery: Codable {
     let id, name, breweryType, address1: String
     let address2, address3: String?
     let city, stateProvince, postalCode, country: String
-    let longitude, latitude, phone: String
-    let websiteURL: String
+    let longitude, latitude, phone, websiteURL: String?
     let state, street: String
 
     enum CodingKeys: String, CodingKey {

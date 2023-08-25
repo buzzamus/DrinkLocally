@@ -10,6 +10,8 @@ import CoreLocation
 
 struct ContentView: View {
     @ObservedObject var locationService = LocationService(locationManager: CLLocationManager())
+    @State var apiClient = APIClient()
+    @State var breweries: [Brewery] = []
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -19,7 +21,19 @@ struct ContentView: View {
             Text(String(locationService.currentLocation?.coordinate.longitude ?? -66.6666))
         }
         .onAppear(perform: locationService.retrieveLocation)
-        .padding()
+        .task {
+            do {
+                breweries = try await populateBreweries()
+                print(breweries)
+            } catch {
+                print("fuck")
+            }
+        }
+    }
+    
+    func populateBreweries() async throws -> [Brewery] {
+        breweries = try await apiClient.fetchBreweries(url: URL(string: "https://api.openbrewerydb.org/v1/breweries?per_page=3")!)
+        return breweries
     }
 }
 
