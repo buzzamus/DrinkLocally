@@ -34,7 +34,7 @@ final class APIClientTests: XCTestCase {
         )
     }
     
-    func sampleData() -> Data {
+    private func sampleData() -> Data {
         let bundle = Bundle(for: type(of: self))
         let fileURL = bundle.url(forResource: "BreweriesResponse", withExtension: "json")
         let data = try! Data(contentsOf: fileURL!)

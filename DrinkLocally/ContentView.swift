@@ -9,31 +9,17 @@ import SwiftUI
 import CoreLocation
 
 struct ContentView: View {
-    @ObservedObject var locationService = LocationService(locationManager: CLLocationManager())
-    @State var apiClient = APIClient()
-    @State var breweries: [Brewery] = []
+    @ObservedObject var viewModel = BreweriesList(locationManager: CLLocationManager())
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text(String(locationService.currentLocation?.coordinate.latitude ?? -66.6666))
-            Text(String(locationService.currentLocation?.coordinate.longitude ?? -66.6666))
-        }
-        .onAppear(perform: locationService.retrieveLocation)
-        .task {
-            do {
-                breweries = try await populateBreweries()
-                print(breweries)
-            } catch {
-                print("fuck")
+        LazyVStack {
+            ForEach(viewModel.breweries) { brewery in
+                Text(brewery.name)
             }
         }
-    }
-    
-    func populateBreweries() async throws -> [Brewery] {
-        breweries = try await apiClient.fetchBreweries(url: URL(string: "https://api.openbrewerydb.org/v1/breweries?per_page=3")!)
-        return breweries
+        .onAppear(perform: viewModel.setupLocationServices)
+        .task {
+            await viewModel.populateBreweries()
+        }
     }
 }
 

@@ -8,10 +8,6 @@
 import Foundation
 
 class APIClient {
-    enum URLError: Error {
-        case invalidURL
-    }
-//    static let shared = APIClient()
     lazy var session: Networking = URLSession.shared
 
     init(networking: Networking = URLSession.shared) {
