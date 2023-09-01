@@ -9,17 +9,21 @@ import SwiftUI
 import CoreLocation
 
 struct ContentView: View {
-    @ObservedObject var locationService = LocationService(locationManager: CLLocationManager())
+    @ObservedObject var viewModel = BreweriesList(locationManager: CLLocationManager())
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text(String(locationService.currentLocation?.coordinate.latitude ?? -66.6666))
-            Text(String(locationService.currentLocation?.coordinate.longitude ?? -66.6666))
+        LazyVStack {
+            ForEach(viewModel.breweries) { brewery in
+                Text(brewery.name)
+            }
         }
-        .onAppear(perform: locationService.retrieveLocation)
-        .padding()
+        .onAppear(perform: viewModel.setupLocationServices)
+        .task {
+            do {
+                try await viewModel.populateBreweries()
+            } catch {
+                print(error)
+            }
+        }
     }
 }
 

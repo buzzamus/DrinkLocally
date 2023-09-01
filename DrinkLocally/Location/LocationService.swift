@@ -21,15 +21,15 @@ class LocationService: NSObject, ObservableObject {
     }
     
     func retrieveLocation() {
-        requestLocationAuthorization()
+        if permissionGiven == false {
+            requestLocationAuthorization()
+        }
         setLocation()
     }
     
     private func requestLocationAuthorization() {
-        if permissionGiven == false {
             locationManager.requestWhenInUseAuthorization()
             locationManager.requestLocation()
-        }
     }
     
     private func setLocation() {

@@ -10,9 +10,9 @@ import CoreLocation
 @testable import DrinkLocally
 
 final class LocationServiceTests: XCTestCase {
-    var locationManagerMock: MockLocationManager!
-    var sut: LocationService!
-    let location = CLLocation(latitude: 48.858093, longitude: 2.294694)
+   private var locationManagerMock: MockLocationManager!
+    private var sut: LocationService!
+    private let location = CLLocation(latitude: 48.858093, longitude: 2.294694)
 
     override func setUpWithError() throws {
         locationManagerMock = MockLocationManager()
@@ -21,6 +21,7 @@ final class LocationServiceTests: XCTestCase {
 
     override func tearDownWithError() throws {
         locationManagerMock = nil
+        sut = nil
     }
     
     func test_locationService_returnsCurrentLocation() {
