@@ -12,7 +12,6 @@ import CoreLocation
 final class BreweriesListTests: XCTestCase {
     var sut: BreweriesList!
     var locationManager: MockLocationManager!
-    var networking: MockNetworking!
     private let location = CLLocation(latitude: 48.858093, longitude: 2.294694)
 
     override func setUpWithError() throws {
