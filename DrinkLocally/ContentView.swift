@@ -18,7 +18,11 @@ struct ContentView: View {
         }
         .onAppear(perform: viewModel.setupLocationServices)
         .task {
-            await viewModel.populateBreweries()
+            do {
+                try await viewModel.populateBreweries()
+            } catch {
+                print(error)
+            }
         }
     }
 }

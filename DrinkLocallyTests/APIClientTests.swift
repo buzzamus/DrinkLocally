@@ -25,20 +25,15 @@ final class APIClientTests: XCTestCase {
     func test_NetworkingDecodesData() throws {
         let url = try XCTUnwrap(Endpoints.breweriesListURL)
         let urlSessionMock = MockNetworking()
-        let sampleData = sampleData()
+        
+        let sampleJSONResponse = SampleJSONResponse()
+        let sampleData = sampleJSONResponse.sampleData(bundle: Bundle(for: type(of: self)))
         
         let expected = try JSONDecoder().decode([Brewery].self, from: Data(sampleData))
         urlSessionMock.dataForDelegateReturnValue = (
             try JSONEncoder().encode(expected),
             HTTPURLResponse(url: url, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: nil)!
         )
-    }
-    
-    private func sampleData() -> Data {
-        let bundle = Bundle(for: type(of: self))
-        let fileURL = bundle.url(forResource: "BreweriesResponse", withExtension: "json")
-        let data = try! Data(contentsOf: fileURL!)
-        return data
     }
 }
 
