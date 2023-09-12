@@ -11,17 +11,19 @@ import CoreLocation
 struct ContentView: View {
     @ObservedObject var viewModel = BreweriesList(locationManager: CLLocationManager())
     var body: some View {
-        LazyVStack {
-            ForEach(viewModel.breweries) { brewery in
-                Text(brewery.name)
+        ScrollView {
+            LazyVStack {
+                ForEach(viewModel.breweries) { brewery in
+                    Text(brewery.name)
+                }
             }
-        }
-        .onAppear(perform: viewModel.setupLocationServices)
-        .task {
-            do {
-                try await viewModel.populateBreweries()
-            } catch {
-                print(error)
+            .onAppear(perform: viewModel.setupLocationServices)
+            .task {
+                do {
+                    try await viewModel.populateBreweries()
+                } catch {
+                    print(error)
+                }
             }
         }
     }
