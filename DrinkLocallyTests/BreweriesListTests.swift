@@ -12,19 +12,22 @@ import CoreLocation
 final class BreweriesListTests: XCTestCase {
     var sut: BreweriesList!
     var locationManager: MockLocationManager!
+    var mockAPIClient: MockAPIClient!
     private let location = CLLocation(latitude: 48.858093, longitude: 2.294694)
 
     override func setUpWithError() throws {
         locationManager = MockLocationManager()
-        sut = BreweriesList(locationManager: locationManager)
+        mockAPIClient = MockAPIClient()
+        sut = BreweriesList(locationManager: locationManager, apiClient: mockAPIClient)
     }
 
     override func tearDownWithError() throws {
         locationManager = nil
+        mockAPIClient = nil
         sut = nil
     }
     
-    func test_BreweriesListGetsLocationAuthorization() {
+    func testBreweriesListGetsLocationAuthorization() {
         locationManager.mockLocation = location
         locationManager.mockAuthorizationStatus = .authorizedWhenInUse
         
@@ -36,4 +39,18 @@ final class BreweriesListTests: XCTestCase {
         XCTAssertEqual(expectedCoordinates?.latitude, location.coordinate.latitude)
         XCTAssertEqual(expectedCoordinates?.longitude, location.coordinate.longitude)
     }
+    
+    func testPopulateBreweries() async throws {
+        try await sut.populateBreweries()
+        
+        let expectedId = "ef970757-fe42-416f-931d-722451f1f59c"
+        let expectedName = "10 Barrel Brewing Co"
+        let expectedState = "California"
+        
+        XCTAssertEqual(sut.breweries[0].name, expectedName)
+        XCTAssertEqual(sut.breweries[0].id, expectedId)
+        XCTAssertEqual(sut.breweries[0].stateProvince, expectedState)
+    }
+    
+    
 }

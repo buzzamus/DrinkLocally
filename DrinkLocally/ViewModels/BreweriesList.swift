@@ -9,12 +9,12 @@ import Foundation
 import CoreLocation
 
 class BreweriesList: ObservableObject {
-    let apiClient: APIClient
+    let apiClient: NetworkProtocol
     @Published var locationService: LocationService
     @Published var breweries = [Brewery]()
     
-    init(locationManager: CLLocationManager, client: APIClient = APIClient()) {
-        self.apiClient = client
+    init(locationManager: CLLocationManager, apiClient: APIClient = APIClient()) {
+        self.apiClient = apiClient
         self.locationService = LocationService(locationManager: locationManager)
     }
     
@@ -29,7 +29,7 @@ class BreweriesList: ObservableObject {
     @MainActor
     func populateBreweries() async throws {
         guard let url = URL(string: Endpoints.breweriesListBaseURLString + locationString()) else { return }
-        self.breweries = try await apiClient.fetchBreweries(url: url)
+        self.breweries = try await apiClient.fetchData(url: url)
     }
     
     private func locationString() -> String {

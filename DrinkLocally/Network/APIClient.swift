@@ -7,16 +7,9 @@
 
 import Foundation
 
-class APIClient {
-    lazy var session: Networking = URLSession.shared
-
-    init(networking: Networking = URLSession.shared) {
-        self.session = networking
-    }
-    
-    func fetchBreweries(url: URL) async throws -> [Brewery] {
-        let request = URLRequest(url: url)
-        let (data, _) = try await session.data(for: request, delegate: nil)
+class APIClient: NetworkProtocol {
+    func fetchData(url: URL) async throws -> [Brewery] {
+        let (data, _) = try await URLSession.shared.data(from: url)
         return try JSONDecoder().decode([Brewery].self, from: data)
     }
 }
