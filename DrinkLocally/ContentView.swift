@@ -9,23 +9,8 @@ import SwiftUI
 import CoreLocation
 
 struct ContentView: View {
-    @ObservedObject var viewModel = BreweriesList(locationManager: CLLocationManager())
     var body: some View {
-        ScrollView {
-            LazyVStack {
-                ForEach(viewModel.breweries) { brewery in
-                    Text(brewery.name)
-                }
-            }
-            .onAppear(perform: viewModel.setupLocationServices)
-            .task {
-                do {
-                    try await viewModel.populateBreweries()
-                } catch {
-                    print(error)
-                }
-            }
-        }
+        BreweriesListView(viewModel: BreweriesList(locationManager: CLLocationManager()))
     }
 }
 
