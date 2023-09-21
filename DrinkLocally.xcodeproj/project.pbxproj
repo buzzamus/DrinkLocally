@@ -19,6 +19,7 @@
 		E65D8E7A2A96E48000837281 /* BreweriesResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = E65D8E792A96E48000837281 /* BreweriesResponse.json */; };
 		E66B89432ABA72120071F695 /* BreweriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66B89422ABA72120071F695 /* BreweriesListView.swift */; };
 		E66B89452ABA729D0071F695 /* BreweryDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66B89442ABA729D0071F695 /* BreweryDetailsView.swift */; };
+		E66BA8732ABCB2FC00D50059 /* SingleBreweryResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = E66BA8722ABCB2FC00D50059 /* SingleBreweryResponse.json */; };
 		E671A7C52AA22E01006C422E /* BreweriesListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E671A7C42AA22E01006C422E /* BreweriesListTests.swift */; };
 		E671A7CD2AA236A8006C422E /* SampleJSONResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E671A7CC2AA236A8006C422E /* SampleJSONResponse.swift */; };
 		E69F6DCC2A92894D00047622 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69F6DCB2A92894D00047622 /* LocationService.swift */; };
@@ -63,6 +64,7 @@
 		E65D8E792A96E48000837281 /* BreweriesResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BreweriesResponse.json; sourceTree = "<group>"; };
 		E66B89422ABA72120071F695 /* BreweriesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreweriesListView.swift; sourceTree = "<group>"; };
 		E66B89442ABA729D0071F695 /* BreweryDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreweryDetailsView.swift; sourceTree = "<group>"; };
+		E66BA8722ABCB2FC00D50059 /* SingleBreweryResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SingleBreweryResponse.json; sourceTree = "<group>"; };
 		E671A7C42AA22E01006C422E /* BreweriesListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreweriesListTests.swift; sourceTree = "<group>"; };
 		E671A7CC2AA236A8006C422E /* SampleJSONResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleJSONResponse.swift; sourceTree = "<group>"; };
 		E69F6DCB2A92894D00047622 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				E65D8E792A96E48000837281 /* BreweriesResponse.json */,
+				E66BA8722ABCB2FC00D50059 /* SingleBreweryResponse.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E65D8E7A2A96E48000837281 /* BreweriesResponse.json in Resources */,
+				E66BA8732ABCB2FC00D50059 /* SingleBreweryResponse.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

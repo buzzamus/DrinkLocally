@@ -8,5 +8,6 @@
 import Foundation
 
 protocol NetworkProtocol {
-    func fetchData(url: URL) async throws -> [Brewery]
+    func fetchBreweries(url: URL) async throws -> [Brewery]
+    func fetchSingleBrewery(url: URL) async throws -> Brewery
 }

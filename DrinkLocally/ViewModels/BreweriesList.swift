@@ -9,9 +9,10 @@ import Foundation
 import CoreLocation
 
 class BreweriesList: ObservableObject {
-    let apiClient: NetworkProtocol
-    @Published var locationService: LocationService
-    @Published var breweries = [Brewery]()
+    private let apiClient: NetworkProtocol
+    @Published private(set) var locationService: LocationService
+    @Published private(set) var breweries = [Brewery]()
+    @Published private(set) var selectedBrewery: Brewery? = nil
     
     init(locationManager: CLLocationManager, apiClient: APIClient = APIClient()) {
         self.apiClient = apiClient
@@ -29,7 +30,13 @@ class BreweriesList: ObservableObject {
     @MainActor
     func populateBreweries() async throws {
         guard let url = URL(string: Endpoints.breweriesListBaseURLString + locationString()) else { return }
-        self.breweries = try await apiClient.fetchData(url: url)
+        self.breweries = try await apiClient.fetchBreweries(url: url)
+    }
+    
+    @MainActor
+    func populateSelectedBrewery(breweryId: String) async throws {
+        guard let url = URL(string: Endpoints.singleBreweryURLString + breweryId) else { return }
+        self.selectedBrewery = try await apiClient.fetchSingleBrewery(url: url)
     }
     
     private func locationString() -> String {
