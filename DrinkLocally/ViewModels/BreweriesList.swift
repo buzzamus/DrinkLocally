@@ -13,6 +13,7 @@ class BreweriesList: ObservableObject {
     @Published private(set) var locationService: LocationService
     @Published private(set) var breweries = [Brewery]()
     @Published private(set) var selectedBrewery: Brewery? = nil
+    @Published private(set) var requestInProgress = false
     
     init(locationManager: CLLocationManager, apiClient: APIClient = APIClient()) {
         self.apiClient = apiClient
@@ -29,8 +30,10 @@ class BreweriesList: ObservableObject {
     
     @MainActor
     func populateBreweries() async throws {
+        self.requestInProgress = true
         guard let url = URL(string: Endpoints.breweriesListBaseURLString + locationString()) else { return }
         self.breweries = try await apiClient.fetchBreweries(url: url)
+        self.requestInProgress = false
     }
     
     @MainActor
