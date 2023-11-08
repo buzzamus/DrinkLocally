@@ -9,7 +9,7 @@ import SwiftUI
 import CoreLocation
 
 struct BreweriesListView: View {
-    @ObservedObject var viewModel = BreweriesList(locationManager: CLLocationManager())
+    @ObservedObject var viewModel: BreweriesList
     @State private var selectedBrewery: Brewery?
     @State private var networkError = false
     var body: some View {
@@ -69,6 +69,6 @@ struct BreweriesListView: View {
 
 struct BreweriesListView_Previews: PreviewProvider {
     static var previews: some View {
-        BreweriesListView()
+        BreweriesListView(viewModel: BreweriesList(locationManager: CLLocationManager()))
     }
 }

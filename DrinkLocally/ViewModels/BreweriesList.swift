@@ -16,7 +16,7 @@ class BreweriesList: ObservableObject {
     @Published private(set) var requestInProgress = false
     @Published private(set) var locationError = false
     
-    init(locationManager: CLLocationManager, apiClient: APIClient = APIClient()) {
+    init(locationManager: CLLocationManager, apiClient: NetworkProtocol = APIClient()) {
         self.apiClient = apiClient
         self.locationService = LocationService(locationManager: locationManager)
     }

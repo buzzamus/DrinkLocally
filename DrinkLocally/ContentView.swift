@@ -9,14 +9,15 @@ import SwiftUI
 import CoreLocation
 
 struct ContentView: View {
+    @ObservedObject var viewModel = BreweriesList(locationManager: CLLocationManager())
     var body: some View {
         TabView {
-            BreweriesListView(viewModel: BreweriesList(locationManager: CLLocationManager()))
+            BreweriesListView(viewModel: viewModel)
                 .tabItem { 
                     Image(systemName: "list.bullet")
                     Text("Nearby Breweries")
                 }
-            MapView()
+            MapView(viewModel: viewModel)
                 .tabItem {
                     Image(systemName: "globe.americas")
                     Text("Map View")
