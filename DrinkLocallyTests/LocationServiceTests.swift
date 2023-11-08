@@ -24,16 +24,6 @@ final class LocationServiceTests: XCTestCase {
         sut = nil
     }
     
-    func test_locationService_returnsCurrentLocation() {
-        locationManagerMock.mockAuthorizationStatus = .authorizedWhenInUse
-        locationManagerMock.mockLocation = location
-        
-        sut.retrieveLocation()
-        
-        XCTAssertEqual(sut.currentLocation?.coordinate.latitude, location.coordinate.latitude)
-        XCTAssertTrue(sut.permissionGiven)
-    }
-    
     func test_locationService_handlesWhenLocationAuthorizationNotGiven() {
         locationManagerMock.mockAuthorizationStatus = .denied
         

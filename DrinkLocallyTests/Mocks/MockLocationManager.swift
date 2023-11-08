@@ -10,6 +10,7 @@ import CoreLocation
 
 class MockLocationManager: CLLocationManager {
     var mockLocation: CLLocation?
+    var locations: [CLLocation] = []
     var mockAuthorizationStatus: CLAuthorizationStatus = .authorizedWhenInUse
     
     override init() {
@@ -17,6 +18,9 @@ class MockLocationManager: CLLocationManager {
     }
     
     override var location: CLLocation? {
+        if mockLocation != nil {
+            locations.append(mockLocation!)
+        }
         return mockLocation
     }
     

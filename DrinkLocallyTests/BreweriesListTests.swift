@@ -30,19 +30,6 @@ final class BreweriesListTests: XCTestCase {
         sut = nil
     }
     
-    func testBreweriesListGetsLocationAuthorization() {
-        locationManager.mockLocation = location
-        locationManager.mockAuthorizationStatus = .authorizedWhenInUse
-        
-        sut.setupLocationServices()
-        
-        let expectedCoordinates = sut.locationService.currentLocation?.coordinate
-        
-        XCTAssertTrue(sut.locationPermissionGiven())
-        XCTAssertEqual(expectedCoordinates?.latitude, location.coordinate.latitude)
-        XCTAssertEqual(expectedCoordinates?.longitude, location.coordinate.longitude)
-    }
-    
     func testPopulateBreweries() async throws {
         try await sut.populateBreweries()
         

@@ -7,17 +7,18 @@
 
 import Foundation
 import CoreLocation
+import Combine
 
 class LocationService: NSObject, ObservableObject {
-    fileprivate var locationManager: CLLocationManager
+    @Published var locationManager: CLLocationManager
     @Published private(set) var currentLocation: CLLocation?
-    @Published private(set) var locationError = false
     @Published private(set) var permissionGiven = false
     
     init(locationManager: CLLocationManager) {
         self.locationManager = locationManager
         super.init()
         self.locationManager.delegate = self
+        self.retrieveLocation()
     }
     
     func retrieveLocation() {
@@ -28,13 +29,11 @@ class LocationService: NSObject, ObservableObject {
     }
     
     private func requestLocationAuthorization() {
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.requestLocation()
+        locationManager.requestWhenInUseAuthorization()
     }
     
     private func setLocation() {
         if (locationManager.authorizationStatus == .authorizedWhenInUse || locationManager.authorizationStatus == .authorizedAlways) {
-            currentLocation = locationManager.location
             permissionGiven = true
         } else {
             permissionGiven = false
@@ -43,13 +42,16 @@ class LocationService: NSObject, ObservableObject {
 }
 
 extension LocationService: CLLocationManagerDelegate {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        guard .authorizedWhenInUse == manager.authorizationStatus else { return }
+        locationManager.startUpdatingLocation()
+    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = locations.last
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
-        locationError = true
+        print(error.localizedDescription)
     }
 }

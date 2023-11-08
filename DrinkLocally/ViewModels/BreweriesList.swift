@@ -14,6 +14,7 @@ class BreweriesList: ObservableObject {
     @Published private(set) var breweries = [Brewery]()
     @Published private(set) var selectedBrewery: Brewery? = nil
     @Published private(set) var requestInProgress = false
+    @Published private(set) var locationError = false
     
     init(locationManager: CLLocationManager, apiClient: APIClient = APIClient()) {
         self.apiClient = apiClient
@@ -44,9 +45,12 @@ class BreweriesList: ObservableObject {
     
     private func locationString() -> String {
         if let location = locationService.currentLocation {
+            locationError = false
             return String(location.coordinate.latitude) + "," + String(location.coordinate.longitude)
         } else {
             // TODO: This shouldn't ever be reached even if the user refuses location services, but should handle in a better way
+            print("hitting error")
+            locationError = true
             return "0.000,0.000"
         }
     }

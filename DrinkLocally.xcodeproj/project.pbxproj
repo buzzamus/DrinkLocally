@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E60FC5E02AD23C4E0053AE3D /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60FC5DF2AD23C4E0053AE3D /* MapView.swift */; };
 		E62D66DF2A9133F80029EB97 /* DrinkLocallyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D66DE2A9133F80029EB97 /* DrinkLocallyApp.swift */; };
 		E62D66E12A9133F80029EB97 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D66E02A9133F80029EB97 /* ContentView.swift */; };
 		E62D66E32A9133F90029EB97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E62D66E22A9133F90029EB97 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E60FC5DF2AD23C4E0053AE3D /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E62D66DB2A9133F80029EB97 /* DrinkLocally.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrinkLocally.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E62D66DE2A9133F80029EB97 /* DrinkLocallyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkLocallyApp.swift; sourceTree = "<group>"; };
 		E62D66E02A9133F80029EB97 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			children = (
 				E66B89422ABA72120071F695 /* BreweriesListView.swift */,
 				E66B89442ABA729D0071F695 /* BreweryDetailsView.swift */,
+				E60FC5DF2AD23C4E0053AE3D /* MapView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				E6F618932A943D5E0011811C /* NetworkProtocol.swift in Sources */,
 				E62D66E12A9133F80029EB97 /* ContentView.swift in Sources */,
 				E6E311D42AA0E5CB00549BD5 /* BreweriesList.swift in Sources */,
+				E60FC5E02AD23C4E0053AE3D /* MapView.swift in Sources */,
 				E62D66DF2A9133F80029EB97 /* DrinkLocallyApp.swift in Sources */,
 				E66B89452ABA729D0071F695 /* BreweryDetailsView.swift in Sources */,
 				E6F618912A9436000011811C /* Endpoints.swift in Sources */,
@@ -467,7 +471,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -521,7 +525,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -549,6 +553,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -580,6 +585,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -602,7 +608,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GP2V62MZ3S;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.brentbusby.DrinkLocallyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -622,7 +628,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GP2V62MZ3S;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.brentbusby.DrinkLocallyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

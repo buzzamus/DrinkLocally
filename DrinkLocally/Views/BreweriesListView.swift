@@ -13,36 +13,56 @@ struct BreweriesListView: View {
     @State private var selectedBrewery: Brewery?
     @State private var networkError = false
     var body: some View {
-        if viewModel.requestInProgress {
-            ProgressView("Retrieving Data...")
-                .foregroundColor(.purple)
-        }
-        
-        ScrollView {
-            LazyVStack {
-                ForEach(viewModel.breweries, id: \.self.id) { brewery in
-                    Button(brewery.name) {
-                        self.selectedBrewery = brewery
+        VStack {
+            if viewModel.requestInProgress {
+                ProgressView("Retrieving Data...")
+                    .foregroundColor(.purple)
+            }
+            
+            if viewModel.locationError {
+                Text("ERROR!!!! WE ARE ALL GONNA DIE!")
+            }
+            
+            Text(String(viewModel.locationService.currentLocation?.coordinate.latitude ?? 0.00000))
+            Text(String(viewModel.locationService.currentLocation?.coordinate.longitude ?? 0.00000))
+            
+            ScrollView {
+                LazyVStack {
+                    ForEach(viewModel.breweries, id: \.self.id) { brewery in
+                        Button(brewery.name) {
+                            self.selectedBrewery = brewery
+                        }
+                        .frame(minWidth: 300, maxWidth: 300)
+                        .background(.purple)
+                        .foregroundColor(.white)
+                        .buttonStyle(.bordered)
+                        .cornerRadius(10)
                     }
-                    .frame(minWidth: 300, maxWidth: 300)
-                    .background(.purple)
-                    .foregroundColor(.white)
-                    .buttonStyle(.bordered)
-                    .cornerRadius(10)
+                }
+                .onAppear(perform: viewModel.setupLocationServices)
+                .task {
+                    do {
+                        try await viewModel.populateBreweries()
+                    } catch {
+                        print(error)
+                        networkError = true
+                    }
+                }
+                .onChange(of: viewModel.locationService.currentLocation) {
+                    print("current location changed....")
+                    Task {
+                        do {
+                            try await viewModel.populateBreweries()
+                        } catch {
+                            print(error)
+                            networkError = true
+                        }
+                    }
                 }
             }
-            .onAppear(perform: viewModel.setupLocationServices)
-            .task {
-                do {
-                    try await viewModel.populateBreweries()
-                } catch {
-                    print(error)
-                    networkError = true
-                }
+            .sheet(item: $selectedBrewery) { brewery in
+                BreweryDetailsView(brewery: brewery)
             }
-        }
-        .sheet(item: $selectedBrewery) { brewery in
-            BreweryDetailsView(brewery: brewery)
         }
     }
 }

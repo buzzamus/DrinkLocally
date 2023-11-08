@@ -10,7 +10,18 @@ import CoreLocation
 
 struct ContentView: View {
     var body: some View {
-        BreweriesListView(viewModel: BreweriesList(locationManager: CLLocationManager()))
+        TabView {
+            BreweriesListView(viewModel: BreweriesList(locationManager: CLLocationManager()))
+                .tabItem { 
+                    Image(systemName: "list.bullet")
+                    Text("Nearby Breweries")
+                }
+            MapView()
+                .tabItem {
+                    Image(systemName: "globe.americas")
+                    Text("Map View")
+                }
+        }
     }
 }
 
