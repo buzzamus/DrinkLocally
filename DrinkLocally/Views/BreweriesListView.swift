@@ -20,22 +20,19 @@ struct BreweriesListView: View {
             }
             
             if viewModel.locationError {
-                Text("ERROR!!!! WE ARE ALL GONNA DIE!")
+                Text("Error Retrieving data. Add Error View here.")
             }
-            
-            Text(String(viewModel.locationService.currentLocation?.coordinate.latitude ?? 0.00000))
-            Text(String(viewModel.locationService.currentLocation?.coordinate.longitude ?? 0.00000))
-            
+
             ScrollView {
                 LazyVStack {
                     ForEach(viewModel.breweries, id: \.self.id) { brewery in
                         Button(brewery.name) {
                             self.selectedBrewery = brewery
                         }
-                        .frame(minWidth: 300, maxWidth: 300)
-                        .background(.purple)
+                        .frame(width: 300, height: 50)
+                        .background(.brown)
                         .foregroundColor(.white)
-                        .buttonStyle(.bordered)
+                        .buttonStyle(BorderlessButtonStyle())
                         .cornerRadius(10)
                     }
                 }
