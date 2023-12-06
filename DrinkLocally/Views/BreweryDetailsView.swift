@@ -10,18 +10,19 @@ import MapKit
 
 struct BreweryDetailsView: View {
     let brewery: Brewery
-    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
     @State var breweryLocation = CLLocationCoordinate2D()
     var body: some View {
         VStack {
             Text(brewery.name)
                 .font(.title)
                 .underline()
-            if region.center.latitude != 0.0 {
+            if region.center.latitude != 0.0 && region.center.longitude != 0.0 {
                 Map {
                     Marker(brewery.name, coordinate: breweryLocation)
                     UserAnnotation()
-                }.frame(minWidth: 400, maxWidth: 400, minHeight: 400, maxHeight: 400)
+                }
+                .frame(minWidth: 400, maxWidth: 400, minHeight: 400, maxHeight: 400)
             }
             Spacer()
             Group {

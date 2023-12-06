@@ -26,6 +26,7 @@ final class LocationServiceTests: XCTestCase {
     
     func test_locationService_handlesWhenLocationAuthorizationNotGiven() {
         locationManagerMock.mockAuthorizationStatus = .denied
+        locationManagerMock.mockLocation = location
         
         sut.retrieveLocation()
         

@@ -7,7 +7,6 @@
 
 import Foundation
 import CoreLocation
-import Combine
 
 class LocationService: NSObject, ObservableObject {
     @Published var locationManager: CLLocationManager
@@ -25,7 +24,9 @@ class LocationService: NSObject, ObservableObject {
         if permissionGiven == false {
             requestLocationAuthorization()
         }
-        setLocation()
+        if permissionGiven {
+            setLocation()
+        }
     }
     
     private func requestLocationAuthorization() {

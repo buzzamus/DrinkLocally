@@ -49,7 +49,7 @@ class BreweriesList: ObservableObject {
             return String(location.coordinate.latitude) + "," + String(location.coordinate.longitude)
         } else {
             // TODO: This shouldn't ever be reached even if the user refuses location services, but should handle in a better way
-            print("hitting error")
+            print("hitting error in creating request coordinates")
             locationError = true
             return "0.000,0.000"
         }

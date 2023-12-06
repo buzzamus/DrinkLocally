@@ -16,7 +16,7 @@ struct BreweriesListView: View {
         VStack {
             if viewModel.requestInProgress {
                 ProgressView("Retrieving Data...")
-                    .foregroundColor(.purple)
+                    .foregroundColor(.gray)
             }
             
             if viewModel.locationError {

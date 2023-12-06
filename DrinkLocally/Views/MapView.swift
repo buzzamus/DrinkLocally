@@ -13,11 +13,18 @@ struct MapView: View {
     var body: some View {
         Map {
             ForEach(viewModel.breweries, id: \.self.id) { brewery in
-                Marker(brewery.name, coordinate: CLLocationCoordinate2D(latitude: toDouble(coordinate: brewery.latitude ?? "0.0"), longitude: toDouble(coordinate: brewery.longitude ?? "0.0")))
+                Annotation(brewery.name, coordinate: CLLocationCoordinate2D(latitude: toDouble(coordinate: brewery.latitude ?? "0.0"), longitude: toDouble(coordinate: brewery.longitude ?? "0.0"))) {
+                    Image(systemName: "mappin")
+                        .foregroundStyle(.black)
+                        .padding()
+                        .background(.red)
+                        .clipShape(Circle())
+                }
             }
             UserAnnotation()
         }
         .frame(minWidth: 400, maxWidth: 400, minHeight: 400, maxHeight: 400)
+        
     }
     
     func toDouble(coordinate: String) -> Double {

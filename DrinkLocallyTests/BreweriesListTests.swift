@@ -13,7 +13,6 @@ final class BreweriesListTests: XCTestCase {
     var sut: BreweriesList!
     var locationManager: MockLocationManager!
     var mockAPIClient: NetworkProtocol!
-    private let location = CLLocation(latitude: 48.858093, longitude: 2.294694)
     private let expectedId = "ef970757-fe42-416f-931d-722451f1f59c"
     private let expectedName = "10 Barrel Brewing Co"
     private let expectedState = "California"
