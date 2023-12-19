@@ -12,15 +12,16 @@ struct BreweriesListView: View {
     @ObservedObject var viewModel: BreweriesList
     @State private var selectedBrewery: Brewery?
     @State private var networkError = false
+    let errorMessage = "A network error occurred. Try again later."
     var body: some View {
         VStack {
-            if viewModel.requestInProgress {
+            if viewModel.requestInProgress && networkError == false {
                 ProgressView("Retrieving Data...")
                     .foregroundColor(.gray)
             }
             
-            if viewModel.locationError {
-                Text("Error Retrieving data. Add Error View here.")
+            if networkError {
+                ErrorView(errorMessage: errorMessage)
             }
 
             ScrollView {

@@ -11,6 +11,7 @@ import MapKit
 struct MapView: View {
     @StateObject var viewModel: BreweriesList
     var body: some View {
+
         Map {
             ForEach(viewModel.breweries, id: \.self.id) { brewery in
                 Annotation(brewery.name, coordinate: CLLocationCoordinate2D(latitude: toDouble(coordinate: brewery.latitude ?? "0.0"), longitude: toDouble(coordinate: brewery.longitude ?? "0.0"))) {

@@ -18,7 +18,7 @@ struct BreweryDetailsView: View {
                 .font(.title)
                 .underline()
             if region.center.latitude != 0.0 && region.center.longitude != 0.0 {
-                Map {
+                Map(initialPosition: .region(region)) {
                     Marker(brewery.name, coordinate: breweryLocation)
                     UserAnnotation()
                 }
