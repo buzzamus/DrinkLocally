@@ -11,21 +11,25 @@ import MapKit
 struct MapView: View {
     @StateObject var viewModel: BreweriesList
     var body: some View {
-
-        Map {
-            ForEach(viewModel.breweries, id: \.self.id) { brewery in
-                Annotation(brewery.name, coordinate: CLLocationCoordinate2D(latitude: toDouble(coordinate: brewery.latitude ?? "0.0"), longitude: toDouble(coordinate: brewery.longitude ?? "0.0"))) {
-                    Image(systemName: "mappin")
-                        .foregroundStyle(.black)
-                        .padding()
-                        .background(.red)
-                        .clipShape(Circle())
+        VStack {
+            Text("Nearby Breweries")
+                .font(.largeTitle)
+            
+            Map {
+                ForEach(viewModel.breweries, id: \.self.id) { brewery in
+                    Annotation(brewery.name, coordinate: CLLocationCoordinate2D(latitude: toDouble(coordinate: brewery.latitude ?? "0.0"), longitude: toDouble(coordinate: brewery.longitude ?? "0.0"))) {
+                        Image(systemName: "mappin")
+                            .foregroundStyle(.black)
+                            .padding()
+                            .background(.red)
+                            .clipShape(Circle())
+                    }
                 }
+                UserAnnotation()
             }
-            UserAnnotation()
+            .frame(minWidth: 400, maxWidth: 400, minHeight: 400, maxHeight: 400)
+            Spacer()
         }
-        .frame(minWidth: 400, maxWidth: 400, minHeight: 400, maxHeight: 400)
-        
     }
     
     func toDouble(coordinate: String) -> Double {

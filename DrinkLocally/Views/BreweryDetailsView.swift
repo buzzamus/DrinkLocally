@@ -16,7 +16,6 @@ struct BreweryDetailsView: View {
         VStack {
             Text(brewery.name)
                 .font(.title)
-                .underline()
             if region.center.latitude != 0.0 && region.center.longitude != 0.0 {
                 Map(initialPosition: .region(region)) {
                     Marker(brewery.name, coordinate: breweryLocation)
@@ -27,11 +26,15 @@ struct BreweryDetailsView: View {
             Spacer()
             Group {
                 Text(brewery.address1 ?? "")
-                Text(brewery.address2 ?? "")
-                Text(brewery.address3 ?? "")
                 Text(brewery.city ?? "")
                 Text(brewery.stateProvince ?? "")
-                Text(brewery.websiteURL ?? "no website")
+                Divider()
+                
+                if ((brewery.websiteURL) != nil) {
+                    Link("Website",
+                         destination: URL(string: brewery.websiteURL!)!)
+                }
+                
             }
             Spacer()
             Spacer()
