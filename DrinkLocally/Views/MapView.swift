@@ -10,6 +10,7 @@ import MapKit
 
 struct MapView: View {
     @StateObject var viewModel: BreweriesList
+    @State private var selectedBrewery: Brewery?
     var body: some View {
         VStack {
             Text("Nearby Breweries")
@@ -23,9 +24,16 @@ struct MapView: View {
                             .padding()
                             .background(.red)
                             .clipShape(Circle())
+                            .onTapGesture {
+                                self.selectedBrewery = brewery
+                            }
                     }
+
                 }
                 UserAnnotation()
+            }
+            .sheet(item: $selectedBrewery) { brewery in
+                BreweryDetailsView(brewery: brewery)
             }
             .frame(minWidth: 400, maxWidth: 400, minHeight: 400, maxHeight: 400)
             Spacer()
