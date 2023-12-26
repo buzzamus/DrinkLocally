@@ -28,7 +28,7 @@ struct MapView: View {
                                 self.selectedBrewery = brewery
                             }
                     }
-
+                    
                 }
                 UserAnnotation()
             }
@@ -37,6 +37,11 @@ struct MapView: View {
             }
             .frame(minWidth: 400, maxWidth: 400, minHeight: 400, maxHeight: 400)
             Spacer()
+            
+            Divider()
+            ScrollView {
+                BreweryButtonListView(breweries: viewModel.breweries, selectedBrewery: $selectedBrewery)
+            }
         }
     }
     

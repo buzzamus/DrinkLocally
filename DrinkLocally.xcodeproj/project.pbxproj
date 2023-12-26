@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E60DD62E2B310E5A0051E3A6 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60DD62D2B310E5A0051E3A6 /* ErrorView.swift */; };
 		E60FC5E02AD23C4E0053AE3D /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60FC5DF2AD23C4E0053AE3D /* MapView.swift */; };
+		E62A7F7E2B3B54AB00A3D3F9 /* BreweryButtonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62A7F7D2B3B54AB00A3D3F9 /* BreweryButtonListView.swift */; };
 		E62D66DF2A9133F80029EB97 /* DrinkLocallyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D66DE2A9133F80029EB97 /* DrinkLocallyApp.swift */; };
 		E62D66E12A9133F80029EB97 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D66E02A9133F80029EB97 /* ContentView.swift */; };
 		E62D66E32A9133F90029EB97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E62D66E22A9133F90029EB97 /* Assets.xcassets */; };
@@ -52,6 +53,7 @@
 /* Begin PBXFileReference section */
 		E60DD62D2B310E5A0051E3A6 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		E60FC5DF2AD23C4E0053AE3D /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		E62A7F7D2B3B54AB00A3D3F9 /* BreweryButtonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreweryButtonListView.swift; sourceTree = "<group>"; };
 		E62D66DB2A9133F80029EB97 /* DrinkLocally.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrinkLocally.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E62D66DE2A9133F80029EB97 /* DrinkLocallyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkLocallyApp.swift; sourceTree = "<group>"; };
 		E62D66E02A9133F80029EB97 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				E66B89442ABA729D0071F695 /* BreweryDetailsView.swift */,
 				E60FC5DF2AD23C4E0053AE3D /* MapView.swift */,
 				E60DD62D2B310E5A0051E3A6 /* ErrorView.swift */,
+				E62A7F7D2B3B54AB00A3D3F9 /* BreweryButtonListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				E6E311D42AA0E5CB00549BD5 /* BreweriesList.swift in Sources */,
 				E60FC5E02AD23C4E0053AE3D /* MapView.swift in Sources */,
 				E62D66DF2A9133F80029EB97 /* DrinkLocallyApp.swift in Sources */,
+				E62A7F7E2B3B54AB00A3D3F9 /* BreweryButtonListView.swift in Sources */,
 				E66B89452ABA729D0071F695 /* BreweryDetailsView.swift in Sources */,
 				E6F618912A9436000011811C /* Endpoints.swift in Sources */,
 				E60DD62E2B310E5A0051E3A6 /* ErrorView.swift in Sources */,

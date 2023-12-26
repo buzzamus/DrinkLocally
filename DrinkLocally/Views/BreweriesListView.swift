@@ -28,20 +28,7 @@ struct BreweriesListView: View {
             }
 
             ScrollView {
-                LazyVStack {
-                    ForEach(viewModel.breweries, id: \.self.id) { brewery in
-                        Button {
-                            self.selectedBrewery = brewery
-                        } label: {
-                            Text(brewery.name)
-                                .frame(width: 300, height: 50)
-                                .background(.brown)
-                                .foregroundColor(.white)
-                                .buttonStyle(BorderlessButtonStyle())
-                                .cornerRadius(10)
-                        }
-                    }
-                }
+                BreweryButtonListView(breweries: viewModel.breweries, selectedBrewery: $selectedBrewery)
                 .onAppear(perform: viewModel.setupLocationServices)
                 .task {
                     do {
