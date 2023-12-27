@@ -21,18 +21,22 @@ struct BreweryDetailsView: View {
                     Marker(brewery.name, coordinate: breweryLocation)
                     UserAnnotation()
                 }
-                .frame(minWidth: 400, maxWidth: 400, minHeight: 400, maxHeight: 400)
+                .frame(minWidth: 400, maxWidth: 400, minHeight: 500, maxHeight: 500)
             }
             Spacer()
             Group {
                 Text(brewery.address1 ?? "")
+                    .font(.title)
                 Text(brewery.city ?? "")
+                    .font(.title)
                 Text(brewery.stateProvince ?? "")
+                    .font(.title)
                 Divider()
                 
                 if ((brewery.websiteURL) != nil) {
                     Link("Website",
                          destination: URL(string: brewery.websiteURL!)!)
+                    .font(.title)
                 }
                 
             }
