@@ -24,6 +24,12 @@ struct ContentView: View {
                     Image(systemName: "globe.americas")
                     Text("Map View")
                 }
+            
+            FavoritesView()
+                .tabItem {
+                    Image(systemName: "star.fill")
+                    Text("Favorites")
+                }
         }
     }
 }

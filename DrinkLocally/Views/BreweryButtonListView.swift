@@ -17,11 +17,11 @@ struct BreweryButtonListView: View {
                     self.selectedBrewery = brewery
                 } label: {
                     Text(brewery.name)
-                        .frame(width: 300, height: 50)
+                        .frame(width: 400, height: 70)
                         .background(.brown)
                         .foregroundColor(.white)
                         .buttonStyle(BorderlessButtonStyle())
-                        .cornerRadius(10)
+//                        .cornerRadius(10)
                 }
             }
         }
