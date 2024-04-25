@@ -7,11 +7,14 @@
 
 import SwiftUI
 import MapKit
+import SwiftData
 
 struct BreweryDetailsView: View {
     let brewery: Brewery
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
     @State var breweryLocation = CLLocationCoordinate2D()
+    @Environment(\.modelContext) var modelContext
+    @Query var favorites: [Favorite]
     var body: some View {
         VStack {
             Text(brewery.name)
@@ -40,6 +43,16 @@ struct BreweryDetailsView: View {
                 }
                 
             }
+
+            Button {
+                actionCheck()
+            } label: {
+                Text(buttonText())
+                    .frame(width: 400, height: 70)
+                    .background(.brown)
+                    .foregroundColor(.white)
+                    .buttonStyle(BorderlessButtonStyle())
+            }
             Spacer()
             Spacer()
         }
@@ -47,6 +60,8 @@ struct BreweryDetailsView: View {
             setCoordinates()
         })
     }
+    
+    //TODO: move these methods into a view model, create tests
     
     private func setCoordinates() {
         guard let latitude = Double(brewery.latitude!) else {
@@ -61,6 +76,55 @@ struct BreweryDetailsView: View {
         self.breweryLocation.longitude = longitude
         
         self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
+    }
+    private func addFavorite() {
+        guard !isFavorited(for: brewery) else {
+            modelContext.delete(Favorite(brewery: brewery))
+            print("Brewery already favorited. Deleting.")
+            try? modelContext.save()
+            return
+        }
+        
+        let favorite = Favorite(brewery: brewery)
+        modelContext.insert(favorite)
+    }
+    
+    private func deleteFavorite(for brewery: Brewery) {
+        guard let favoriteToDelete = favorites.first(where: { $0.id == brewery.id}) else {
+            print("Favorite not found")
+            return
+        }
+        
+        modelContext.delete(favoriteToDelete)
+        
+        do {
+            try modelContext.save()
+            print("Favorite deleted.")
+        } catch {
+            print("Error deleing Favorite: \(error)")
+        }
+    }
+    
+    private func actionCheck() {
+        if isFavorited(for: brewery) {
+            deleteFavorite(for: brewery)
+        } else {
+            addFavorite()
+        }
+    }
+    
+    private func buttonText() -> String {
+        if isFavorited(for: brewery) {
+            return "Unfavorite this brewery"
+        } else {
+            return "Favorite this brewery."
+        }
+    }
+    
+    private func isFavorited(for brewery: Brewery) -> Bool {
+        return favorites.contains { favorite in
+            favorite.id == brewery.id
+        }
     }
 }
 

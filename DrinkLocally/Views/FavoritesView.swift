@@ -6,17 +6,44 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct FavoritesView: View {
+    @ObservedObject var viewModel: BreweriesList
+    @State private var selectedBrewery: Brewery?
+    var favorites: [Favorite]
     var body: some View {
-        VStack {
-            Text("Favorite 1 here!")
-            Text("Favorite 2 here!")
-            Text("Favorite 3 here!")
+        NavigationStack {
+            if favorites.isEmpty {
+                Text("No favorites added yet. Go find some good breweries!")
+            }
+            ScrollView {
+                ForEach(favorites) { favorite in
+                    VStack(alignment: .leading) {
+                        Button {
+                            Task {
+                                try await viewModel.populateSelectedBrewery(breweryId: favorite.id)
+                                self.selectedBrewery = viewModel.selectedBrewery
+                            }
+
+                        } label: {
+                            Text(favorite.name)
+                                .frame(width: 400, height: 70)
+                                .background(.brown)
+                                .foregroundColor(.white)
+                                .buttonStyle(BorderlessButtonStyle())
+                        }
+                    }
+                }
+            }
+            .sheet(item: $selectedBrewery) { brewery in
+                BreweryDetailsView(brewery: brewery)
+            }
+            .navigationTitle("DrinkLocally")
         }
     }
 }
 
 #Preview {
-    FavoritesView()
+    FavoritesView(viewModel: BreweriesList(locationManager: CLLocationManager()), favorites: [])
 }

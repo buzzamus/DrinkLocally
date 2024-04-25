@@ -25,7 +25,7 @@ struct ContentView: View {
                     Text("Map View")
                 }
             
-            FavoritesView()
+            FavoritesView(viewModel: viewModel, favorites: favorites)
                 .tabItem {
                     Image(systemName: "star.fill")
                     Text("Favorites")

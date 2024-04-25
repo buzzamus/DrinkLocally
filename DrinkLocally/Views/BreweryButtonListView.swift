@@ -21,7 +21,6 @@ struct BreweryButtonListView: View {
                         .background(.brown)
                         .foregroundColor(.white)
                         .buttonStyle(BorderlessButtonStyle())
-//                        .cornerRadius(10)
                 }
             }
         }

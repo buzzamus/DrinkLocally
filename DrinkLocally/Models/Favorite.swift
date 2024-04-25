@@ -9,10 +9,12 @@ import Foundation
 import SwiftData
 
 @Model
-class Favorite {
-    let brewery: Brewery
+final class Favorite {
+    let name: String
+    let id: String
     
     init(brewery: Brewery) {
-        self.brewery = brewery
+        self.name = brewery.name
+        self.id = brewery.id
     }
 }
