@@ -7,8 +7,10 @@
 
 import SwiftUI
 import CoreLocation
+import SwiftData
 
 struct ContentView: View {
+    @Query var favorites: [Favorite]
     @ObservedObject var viewModel = BreweriesList(locationManager: CLLocationManager())
     var body: some View {
         TabView {
@@ -21,6 +23,12 @@ struct ContentView: View {
                 .tabItem {
                     Image(systemName: "globe.americas")
                     Text("Map View")
+                }
+            
+            FavoritesView(viewModel: viewModel, favorites: favorites)
+                .tabItem {
+                    Image(systemName: "star.fill")
+                    Text("Favorites")
                 }
         }
     }
