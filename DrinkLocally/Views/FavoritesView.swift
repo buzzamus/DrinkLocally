@@ -14,8 +14,10 @@ struct FavoritesView: View {
     var favorites: [Favorite]
     var body: some View {
         NavigationStack {
+            Divider()
             if favorites.isEmpty {
-                Text("No favorites added yet. Go find some good breweries!")
+                Text("No favorites added yet.")
+                Text("Go find some good breweries!")
             }
             ScrollView {
                 ForEach(favorites) { favorite in
@@ -39,7 +41,7 @@ struct FavoritesView: View {
             .sheet(item: $selectedBrewery) { brewery in
                 BreweryDetailsView(brewery: brewery)
             }
-            .navigationTitle("DrinkLocally")
+            .navigationTitle("Favorite Breweries")
         }
     }
 }

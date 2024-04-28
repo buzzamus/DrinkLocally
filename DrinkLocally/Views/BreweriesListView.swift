@@ -18,6 +18,8 @@ struct BreweriesListView: View {
             Text("Nearby Breweries")
                 .font(.largeTitle)
             
+            Divider()
+            
             if viewModel.requestInProgress && networkError == false {
                 ProgressView("Retrieving Data...")
                     .foregroundColor(.gray)

@@ -13,8 +13,9 @@ struct MapView: View {
     @State private var selectedBrewery: Brewery?
     var body: some View {
         VStack {
-            Text("Nearby Breweries")
+            Text("Find Local Breweries")
                 .font(.largeTitle)
+            Divider()
             
             Map {
                 ForEach(viewModel.breweries, id: \.self.id) { brewery in

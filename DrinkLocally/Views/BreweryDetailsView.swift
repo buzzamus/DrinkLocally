@@ -29,26 +29,31 @@ struct BreweryDetailsView: View {
             Spacer()
             Group {
                 Text(brewery.address1 ?? "")
-                    .font(.title)
+                    .font(.subheadline)
                 Text(brewery.city ?? "")
-                    .font(.title)
+                    .font(.subheadline)
                 Text(brewery.stateProvince ?? "")
-                    .font(.title)
+                    .font(.subheadline)
                 Divider()
                 
+                Spacer()
+                Spacer()
                 if ((brewery.websiteURL) != nil) {
-                    Link("Website",
+                    Link("\(brewery.name)'s Website",
                          destination: URL(string: brewery.websiteURL!)!)
-                    .font(.title)
+                    .font(.headline)
                 }
                 
             }
-
+            Spacer()
+            Spacer()
+            Spacer()
+            Spacer()
             Button {
                 actionCheck()
             } label: {
                 Text(buttonText())
-                    .frame(width: 400, height: 70)
+                    .frame(width: 400, height: 85)
                     .background(.brown)
                     .foregroundColor(.white)
                     .buttonStyle(BorderlessButtonStyle())
@@ -75,7 +80,7 @@ struct BreweryDetailsView: View {
         self.breweryLocation.latitude = latitude
         self.breweryLocation.longitude = longitude
         
-        self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
+        self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))
     }
     private func addFavorite() {
         guard !isFavorited(for: brewery) else {
@@ -89,7 +94,7 @@ struct BreweryDetailsView: View {
         modelContext.insert(favorite)
     }
     
-    private func deleteFavorite(for brewery: Brewery) {
+    private func deleteFavorite() {
         guard let favoriteToDelete = favorites.first(where: { $0.id == brewery.id}) else {
             print("Favorite not found")
             return
@@ -107,7 +112,7 @@ struct BreweryDetailsView: View {
     
     private func actionCheck() {
         if isFavorited(for: brewery) {
-            deleteFavorite(for: brewery)
+            deleteFavorite()
         } else {
             addFavorite()
         }
