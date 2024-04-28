@@ -122,7 +122,7 @@ struct BreweryDetailsView: View {
         if isFavorited(for: brewery) {
             return "Unfavorite this brewery"
         } else {
-            return "Favorite this brewery."
+            return "Favorite this brewery"
         }
     }
     
