@@ -79,6 +79,7 @@
 		E671A7C42AA22E01006C422E /* BreweriesListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreweriesListTests.swift; sourceTree = "<group>"; };
 		E671A7CC2AA236A8006C422E /* SampleJSONResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleJSONResponse.swift; sourceTree = "<group>"; };
 		E681B5592BE0144B00C3BC11 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		E6946C762BE131D500744937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E69F6DCB2A92894D00047622 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		E69F6DD12A9290BB00047622 /* MockLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationManager.swift; sourceTree = "<group>"; };
 		E69F6DD42A9292A900047622 /* LocationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServiceTests.swift; sourceTree = "<group>"; };
@@ -136,6 +137,7 @@
 		E62D66DD2A9133F80029EB97 /* DrinkLocally */ = {
 			isa = PBXGroup;
 			children = (
+				E6946C762BE131D500744937 /* Info.plist */,
 				E62D67122A9145CA0029EB97 /* Location */,
 				E62D67112A9145A60029EB97 /* ViewModels */,
 				E62D67102A9145970029EB97 /* Models */,
@@ -568,6 +570,7 @@
 				DEVELOPMENT_TEAM = GP2V62MZ3S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DrinkLocally/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = DrinkLocally;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your current location in order to find nearby breweries.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -601,6 +604,7 @@
 				DEVELOPMENT_TEAM = GP2V62MZ3S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DrinkLocally/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = DrinkLocally;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your current location in order to find nearby breweries.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
