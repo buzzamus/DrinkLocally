@@ -36,12 +36,16 @@ struct MapView: View {
             .sheet(item: $selectedBrewery) { brewery in
                 BreweryDetailsView(brewery: brewery)
             }
-            .frame(minWidth: 400, maxWidth: 400, minHeight: 400, maxHeight: 400)
+            .frame(minWidth: 400, maxWidth: 400, minHeight: 300, maxHeight: 300)
             Spacer()
             
             Divider()
             ScrollView {
                 BreweryButtonListView(breweries: viewModel.breweries, selectedBrewery: $selectedBrewery)
+            }
+            HStack {
+                Spacer()
+                BreweryRefreshView(viewModel: viewModel)
             }
         }
     }

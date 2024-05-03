@@ -11,12 +11,23 @@ import SwiftData
 
 struct BreweryDetailsView: View {
     let brewery: Brewery
+    @Environment(\.dismiss) private var dismiss
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
     @State var breweryLocation = CLLocationCoordinate2D()
     @Environment(\.modelContext) var modelContext
     @Query var favorites: [Favorite]
+    @State private var showAlert = false
     var body: some View {
         VStack {
+            Button(action: {
+                dismiss()
+            }) {
+                Image(systemName: "xmark")
+                    .foregroundColor(.black)
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .trailing)
+            
             Text(brewery.name)
                 .font(.title)
             if region.center.latitude != 0.0 && region.center.longitude != 0.0 {
@@ -58,6 +69,11 @@ struct BreweryDetailsView: View {
                     .foregroundColor(.white)
                     .buttonStyle(BorderlessButtonStyle())
             }
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text("Confirm Unfavorite"), message: Text("Are you sure you want to unfavorite this brewery?"), primaryButton: .cancel(), secondaryButton: .destructive(Text("Unfavorite")) {
+                    deleteFavorite()
+                })
+            }
             Spacer()
             Spacer()
         }
@@ -82,6 +98,8 @@ struct BreweryDetailsView: View {
         
         self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))
     }
+    
+    // TODO: addFavorite, deleteFavorite, actionCheck and isFavorited should be moved to viewModel...or possibly a different class within viewModel
     private func addFavorite() {
         guard !isFavorited(for: brewery) else {
             modelContext.delete(Favorite(brewery: brewery))
@@ -112,9 +130,15 @@ struct BreweryDetailsView: View {
     
     private func actionCheck() {
         if isFavorited(for: brewery) {
-            deleteFavorite()
+            showAlert = true
         } else {
             addFavorite()
+        }
+    }
+    
+    private func isFavorited(for brewery: Brewery) -> Bool {
+        return favorites.contains { favorite in
+            favorite.id == brewery.id
         }
     }
     
@@ -123,12 +147,6 @@ struct BreweryDetailsView: View {
             return "Unfavorite this brewery"
         } else {
             return "Favorite this brewery"
-        }
-    }
-    
-    private func isFavorited(for brewery: Brewery) -> Bool {
-        return favorites.contains { favorite in
-            favorite.id == brewery.id
         }
     }
 }

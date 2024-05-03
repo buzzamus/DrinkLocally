@@ -55,6 +55,10 @@ struct BreweriesListView: View {
             .sheet(item: $selectedBrewery) { brewery in
                 BreweryDetailsView(brewery: brewery)
             }
+            HStack {
+                Spacer()
+                BreweryRefreshView(viewModel: viewModel)
+            }
         }
     }
 }
