@@ -11,12 +11,22 @@ import SwiftData
 
 struct BreweryDetailsView: View {
     let brewery: Brewery
+    @Environment(\.dismiss) private var dismiss
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
     @State var breweryLocation = CLLocationCoordinate2D()
     @Environment(\.modelContext) var modelContext
     @Query var favorites: [Favorite]
     var body: some View {
         VStack {
+            Button(action: {
+                dismiss()
+            }) {
+                Image(systemName: "xmark")
+                    .foregroundColor(.black)
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .trailing)
+            
             Text(brewery.name)
                 .font(.title)
             if region.center.latitude != 0.0 && region.center.longitude != 0.0 {
