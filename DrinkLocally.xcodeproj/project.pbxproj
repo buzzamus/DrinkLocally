@@ -32,6 +32,7 @@
 		E69F6DCC2A92894D00047622 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69F6DCB2A92894D00047622 /* LocationService.swift */; };
 		E69F6DD22A9290BC00047622 /* MockLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69F6DD12A9290BB00047622 /* MockLocationManager.swift */; };
 		E69F6DD52A9292A900047622 /* LocationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69F6DD42A9292A900047622 /* LocationServiceTests.swift */; };
+		E6DAA9DF2BE6B3EA00D38BD9 /* HeadlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DAA9DE2BE6B3EA00D38BD9 /* HeadlineView.swift */; };
 		E6E311D42AA0E5CB00549BD5 /* BreweriesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E311D32AA0E5CB00549BD5 /* BreweriesList.swift */; };
 		E6F618912A9436000011811C /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F618902A9436000011811C /* Endpoints.swift */; };
 		E6F618932A943D5E0011811C /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F618922A943D5E0011811C /* NetworkProtocol.swift */; };
@@ -85,6 +86,7 @@
 		E69F6DCB2A92894D00047622 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		E69F6DD12A9290BB00047622 /* MockLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationManager.swift; sourceTree = "<group>"; };
 		E69F6DD42A9292A900047622 /* LocationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServiceTests.swift; sourceTree = "<group>"; };
+		E6DAA9DE2BE6B3EA00D38BD9 /* HeadlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlineView.swift; sourceTree = "<group>"; };
 		E6E311D32AA0E5CB00549BD5 /* BreweriesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreweriesList.swift; sourceTree = "<group>"; };
 		E6F618902A9436000011811C /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		E6F618922A943D5E0011811C /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocol.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 		E62D670F2A91458D0029EB97 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E6DAA9DD2BE6B3B900D38BD9 /* SubViews */,
 				E66B89422ABA72120071F695 /* BreweriesListView.swift */,
 				E66B89442ABA729D0071F695 /* BreweryDetailsView.swift */,
 				E60FC5DF2AD23C4E0053AE3D /* MapView.swift */,
@@ -256,6 +259,14 @@
 				E671A7CC2AA236A8006C422E /* SampleJSONResponse.swift */,
 			);
 			path = TestHelpers;
+			sourceTree = "<group>";
+		};
+		E6DAA9DD2BE6B3B900D38BD9 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				E6DAA9DE2BE6B3EA00D38BD9 /* HeadlineView.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -393,6 +404,7 @@
 			files = (
 				E6F618932A943D5E0011811C /* NetworkProtocol.swift in Sources */,
 				E609084C2B65921500D9BF2D /* Favorite.swift in Sources */,
+				E6DAA9DF2BE6B3EA00D38BD9 /* HeadlineView.swift in Sources */,
 				E62D66E12A9133F80029EB97 /* ContentView.swift in Sources */,
 				E6E311D42AA0E5CB00549BD5 /* BreweriesList.swift in Sources */,
 				E60FC5E02AD23C4E0053AE3D /* MapView.swift in Sources */,

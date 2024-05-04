@@ -15,10 +15,7 @@ struct BreweriesListView: View {
     let errorMessage = "A network error occurred. Try again later."
     var body: some View {
         VStack {
-            Text("Nearby Breweries")
-                .font(.largeTitle)
-            
-            Divider()
+            HeadlineView(headline: "Nearby Breweries")
             
             if viewModel.requestInProgress && networkError == false {
                 ProgressView("Retrieving Data...")
