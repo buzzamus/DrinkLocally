@@ -45,7 +45,7 @@ struct BreweryDetailsView: View {
                     Marker(brewery.name, coordinate: breweryLocation)
                     UserAnnotation()
                 }
-                .frame(minWidth: 400, maxWidth: 400, minHeight: 500, maxHeight: 500)
+                .frame(minWidth: 400, maxWidth: 400, minHeight: 450, maxHeight: 450)
             }
             Spacer()
             Group {
