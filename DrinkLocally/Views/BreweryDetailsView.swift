@@ -32,10 +32,9 @@ struct BreweryDetailsView: View {
                 dismiss()
             }) {
                 Image(systemName: "xmark")
-                    .padding(.top, 15)
                     .foregroundColor(textColor)
             }
-            .padding()
+            .padding([.top, .trailing], 20)
             .frame(maxWidth: .infinity, alignment: .trailing)
             
             Text(brewery.name)

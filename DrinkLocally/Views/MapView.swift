@@ -19,7 +19,6 @@ struct MapView: View {
                 ForEach(viewModel.breweries, id: \.self.id) { brewery in
                     Annotation(brewery.name, coordinate: CLLocationCoordinate2D(latitude: toDouble(coordinate: brewery.latitude ?? "0.0"), longitude: toDouble(coordinate: brewery.longitude ?? "0.0"))) {
                         Image(systemName: "mappin")
-                            .foregroundStyle(.black)
                             .padding()
                             .background(.red)
                             .clipShape(Circle())
