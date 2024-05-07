@@ -9,7 +9,7 @@ import SwiftUI
 import MapKit
 
 struct MapView: View {
-    @StateObject var viewModel: BreweriesList
+    @ObservedObject var viewModel: BreweriesList
     @State private var selectedBrewery: Brewery?
     var body: some View {
         VStack {
