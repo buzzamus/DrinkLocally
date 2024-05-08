@@ -29,14 +29,16 @@ struct BreweryDetailsView: View {
     
     var body: some View {
         VStack {
+            Spacer()
             SwipeDownView(indicatorColor: textColor)
+                .frame(maxWidth: .infinity, alignment: .center)
             Button(action: {
                 dismiss()
             }) {
                 Image(systemName: "xmark")
                     .foregroundColor(textColor)
             }
-            .padding([.top, .trailing], 20)
+            .padding(.trailing, 20)
             .frame(maxWidth: .infinity, alignment: .trailing)
             
             Text(brewery.name)
@@ -70,12 +72,11 @@ struct BreweryDetailsView: View {
             Spacer()
             Spacer()
             Spacer()
-            Spacer()
             Button {
                 actionCheck()
             } label: {
                 Text(buttonText())
-                    .frame(width: 400, height: 85)
+                    .frame(width: 400, height: 70)
                     .background(.brown)
                     .foregroundColor(.white)
                     .buttonStyle(BorderlessButtonStyle())
@@ -86,11 +87,11 @@ struct BreweryDetailsView: View {
                 })
             }
             Spacer()
-            Spacer()
         }
         .onAppear(perform: {
             setCoordinates()
         })
+        Spacer()
     }
     
     //TODO: move these methods into a view model, create tests
