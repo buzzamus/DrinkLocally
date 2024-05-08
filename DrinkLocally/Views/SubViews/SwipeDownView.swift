@@ -12,7 +12,7 @@ struct SwipeDownView: View {
     var body: some View {
         Rectangle()
             .fill(indicatorColor)
-            .frame(width: 80, height: 4)
+            .frame(width: 100, height: 5)
             .cornerRadius(2)
             .padding(.vertical, 8)
     }
