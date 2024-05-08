@@ -9,7 +9,7 @@ import SwiftUI
 import MapKit
 
 struct MapView: View {
-    @ObservedObject var viewModel: BreweriesList
+    @StateObject var viewModel: BreweriesList
     @State private var selectedBrewery: Brewery?
     @State private var networkError = false
     var body: some View {
