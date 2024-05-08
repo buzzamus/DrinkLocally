@@ -34,7 +34,7 @@ struct MapView: View {
             .sheet(item: $selectedBrewery) { brewery in
                 BreweryDetailsView(brewery: brewery)
             }
-            .frame(minWidth: 400, maxWidth: 400, minHeight: 350, maxHeight: 350)
+            .frame(minWidth: 400, maxWidth: 400, minHeight: 300, maxHeight: 350)
             Spacer()
             
             Divider()

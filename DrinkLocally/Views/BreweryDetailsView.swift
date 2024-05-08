@@ -29,7 +29,6 @@ struct BreweryDetailsView: View {
     
     var body: some View {
         VStack {
-            Spacer()
             SwipeDownView(indicatorColor: textColor)
                 .frame(maxWidth: .infinity, alignment: .center)
             Button(action: {
@@ -48,7 +47,7 @@ struct BreweryDetailsView: View {
                     Marker(brewery.name, coordinate: breweryLocation)
                     UserAnnotation()
                 }
-                .frame(minWidth: 400, maxWidth: 400, minHeight: 450, maxHeight: 450)
+                .frame(minWidth: 400, maxWidth: 400, minHeight: 300, maxHeight: 450)
             }
             Spacer()
             Group {
