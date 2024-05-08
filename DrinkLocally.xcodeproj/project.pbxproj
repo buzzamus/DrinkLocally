@@ -36,6 +36,7 @@
 		E6E311D42AA0E5CB00549BD5 /* BreweriesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E311D32AA0E5CB00549BD5 /* BreweriesList.swift */; };
 		E6F618912A9436000011811C /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F618902A9436000011811C /* Endpoints.swift */; };
 		E6F618932A943D5E0011811C /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F618922A943D5E0011811C /* NetworkProtocol.swift */; };
+		E6F7CCAD2BEAFCE4001B6EC9 /* SwipeDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F7CCAC2BEAFCE4001B6EC9 /* SwipeDownView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		E6E311D32AA0E5CB00549BD5 /* BreweriesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreweriesList.swift; sourceTree = "<group>"; };
 		E6F618902A9436000011811C /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		E6F618922A943D5E0011811C /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocol.swift; sourceTree = "<group>"; };
+		E6F7CCAC2BEAFCE4001B6EC9 /* SwipeDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeDownView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				E6DAA9DE2BE6B3EA00D38BD9 /* HeadlineView.swift */,
+				E6F7CCAC2BEAFCE4001B6EC9 /* SwipeDownView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				E6F618932A943D5E0011811C /* NetworkProtocol.swift in Sources */,
 				E609084C2B65921500D9BF2D /* Favorite.swift in Sources */,
 				E6DAA9DF2BE6B3EA00D38BD9 /* HeadlineView.swift in Sources */,
+				E6F7CCAD2BEAFCE4001B6EC9 /* SwipeDownView.swift in Sources */,
 				E62D66E12A9133F80029EB97 /* ContentView.swift in Sources */,
 				E6E311D42AA0E5CB00549BD5 /* BreweriesList.swift in Sources */,
 				E60FC5E02AD23C4E0053AE3D /* MapView.swift in Sources */,

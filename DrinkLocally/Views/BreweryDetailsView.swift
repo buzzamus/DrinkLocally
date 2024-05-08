@@ -18,6 +18,7 @@ struct BreweryDetailsView: View {
     @Environment(\.modelContext) var modelContext
     @Query var favorites: [Favorite]
     @State private var showAlert = false
+    
     private var textColor: Color {
         if colorScheme == .dark {
             return Color.white
@@ -28,6 +29,7 @@ struct BreweryDetailsView: View {
     
     var body: some View {
         VStack {
+            SwipeDownView(indicatorColor: textColor)
             Button(action: {
                 dismiss()
             }) {
