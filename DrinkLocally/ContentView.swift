@@ -11,7 +11,7 @@ import SwiftData
 
 struct ContentView: View {
     @Query var favorites: [Favorite]
-    @ObservedObject var viewModel = BreweriesList(locationManager: CLLocationManager())
+    @StateObject var viewModel = BreweriesList(locationManager: CLLocationManager())
     var body: some View {
         TabView {
             BreweriesListView(viewModel: viewModel)

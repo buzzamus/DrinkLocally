@@ -30,7 +30,7 @@ struct BreweryRefreshView: View {
             }
             .frame(width: 50, height: 50)
         }
-        .padding(.bottom, 20) // Add padding to keep the button off the edge of the screen
+        .padding(.bottom, 20)
         .padding(.trailing, 20)
     }
     

@@ -12,20 +12,31 @@ import SwiftData
 struct BreweryDetailsView: View {
     let brewery: Brewery
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.colorScheme) var colorScheme
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
     @State var breweryLocation = CLLocationCoordinate2D()
     @Environment(\.modelContext) var modelContext
     @Query var favorites: [Favorite]
     @State private var showAlert = false
+    
+    private var textColor: Color {
+        if colorScheme == .dark {
+            return Color.white
+        } else {
+            return Color.black
+        }
+    }
+    
     var body: some View {
         VStack {
+            SwipeDownView(indicatorColor: textColor)
             Button(action: {
                 dismiss()
             }) {
                 Image(systemName: "xmark")
-                    .foregroundColor(.black)
+                    .foregroundColor(textColor)
             }
-            .padding()
+            .padding([.top, .trailing], 20)
             .frame(maxWidth: .infinity, alignment: .trailing)
             
             Text(brewery.name)
@@ -35,7 +46,7 @@ struct BreweryDetailsView: View {
                     Marker(brewery.name, coordinate: breweryLocation)
                     UserAnnotation()
                 }
-                .frame(minWidth: 400, maxWidth: 400, minHeight: 500, maxHeight: 500)
+                .frame(minWidth: 400, maxWidth: 400, minHeight: 450, maxHeight: 450)
             }
             Spacer()
             Group {

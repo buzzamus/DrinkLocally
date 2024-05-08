@@ -23,6 +23,7 @@ class LocationService: NSObject, ObservableObject {
     func retrieveLocation() {
         if permissionGiven == false {
             requestLocationAuthorization()
+            setLocation()
         }
         if permissionGiven {
             setLocation()
@@ -36,6 +37,7 @@ class LocationService: NSObject, ObservableObject {
     private func setLocation() {
         if (locationManager.authorizationStatus == .authorizedWhenInUse || locationManager.authorizationStatus == .authorizedAlways) {
             permissionGiven = true
+            locationManager.startUpdatingLocation()
         } else {
             permissionGiven = false
         }

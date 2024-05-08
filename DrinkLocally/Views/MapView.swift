@@ -11,17 +11,15 @@ import MapKit
 struct MapView: View {
     @StateObject var viewModel: BreweriesList
     @State private var selectedBrewery: Brewery?
+    @State private var networkError = false
     var body: some View {
         VStack {
-            Text("Find Local Breweries")
-                .font(.largeTitle)
-            Divider()
+            HeadlineView(headline: "Find Local Breweries")
             
             Map {
                 ForEach(viewModel.breweries, id: \.self.id) { brewery in
                     Annotation(brewery.name, coordinate: CLLocationCoordinate2D(latitude: toDouble(coordinate: brewery.latitude ?? "0.0"), longitude: toDouble(coordinate: brewery.longitude ?? "0.0"))) {
                         Image(systemName: "mappin")
-                            .foregroundStyle(.black)
                             .padding()
                             .background(.red)
                             .clipShape(Circle())
@@ -41,6 +39,11 @@ struct MapView: View {
             
             Divider()
             ScrollView {
+                
+                if viewModel.requestInProgress {
+                    ProgressView("Retrieving Data...")
+                        .foregroundColor(.gray)
+                }
                 BreweryButtonListView(breweries: viewModel.breweries, selectedBrewery: $selectedBrewery)
             }
             HStack {

@@ -31,6 +31,7 @@ class BreweriesList: ObservableObject {
     
     @MainActor
     func populateBreweries() async throws {
+        locationService.retrieveLocation()
         self.requestInProgress = true
         guard let url = URL(string: Endpoints.breweriesListBaseURLString + locationString()) else { return }
         self.breweries = try await apiClient.fetchBreweries(url: url)
@@ -44,14 +45,10 @@ class BreweriesList: ObservableObject {
     }
     
     private func locationString() -> String {
-        if let location = locationService.currentLocation {
-            locationError = false
-            return String(location.coordinate.latitude) + "," + String(location.coordinate.longitude)
-        } else {
-            // TODO: This shouldn't ever be reached even if the user refuses location services, but should handle in a better way
-            print("hitting error in creating request coordinates")
+        guard let location = locationService.currentLocation else {
             locationError = true
             return "0.000,0.000"
         }
+        return String(location.coordinate.latitude) + "," + String(location.coordinate.longitude)
     }
 }
