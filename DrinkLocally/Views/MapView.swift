@@ -11,6 +11,7 @@ import MapKit
 struct MapView: View {
     @ObservedObject var viewModel: BreweriesList
     @State private var selectedBrewery: Brewery?
+    @State private var networkError = false
     var body: some View {
         VStack {
             HeadlineView(headline: "Find Local Breweries")
@@ -38,6 +39,11 @@ struct MapView: View {
             
             Divider()
             ScrollView {
+                
+                if viewModel.requestInProgress {
+                    ProgressView("Retrieving Data...")
+                        .foregroundColor(.gray)
+                }
                 BreweryButtonListView(breweries: viewModel.breweries, selectedBrewery: $selectedBrewery)
             }
             HStack {
