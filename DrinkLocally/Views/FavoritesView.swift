@@ -7,11 +7,13 @@
 
 import SwiftUI
 import CoreLocation
+import SwiftData
 
 struct FavoritesView: View {
     @ObservedObject var viewModel: BreweriesList
     @State private var selectedBrewery: Brewery?
     var favorites: [Favorite]
+    @Environment(\.modelContext) var modelContext
     var body: some View {
         NavigationStack {
             Divider()
@@ -19,7 +21,7 @@ struct FavoritesView: View {
                 Text("No favorites added yet.")
                 Text("Go find some good breweries!")
             }
-            ScrollView {
+            List {
                 ForEach(favorites) { favorite in
                     VStack(alignment: .leading) {
                         Button {
@@ -37,6 +39,12 @@ struct FavoritesView: View {
                         }
                     }
                 }
+                .onDelete(perform: { indexSet in
+                    for index in indexSet {
+                        let favorite = favorites[index]
+                        modelContext.delete(favorite)
+                    }
+                })
             }
             .sheet(item: $selectedBrewery) { brewery in
                 BreweryDetailsView(brewery: brewery)
