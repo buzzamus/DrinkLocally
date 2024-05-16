@@ -46,6 +46,7 @@ struct FavoritesView: View {
                     }
                 })
             }
+            .listStyle(PlainListStyle())
             .sheet(item: $selectedBrewery) { brewery in
                 BreweryDetailsView(brewery: brewery)
             }
