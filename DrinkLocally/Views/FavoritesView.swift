@@ -18,42 +18,50 @@ struct FavoritesView: View {
         NavigationStack {
             Divider()
             if favorites.isEmpty {
-                Text("No favorites added yet.")
-                Text("Go find some good breweries!")
-            }
-            List {
-                ForEach(favorites) { favorite in
-                    VStack(alignment: .leading) {
-                        Button {
-                            Task {
-                                try await viewModel.populateSelectedBrewery(breweryId: favorite.id)
-                                self.selectedBrewery = viewModel.selectedBrewery
-                            }
-
-                        } label: {
-                            Text(favorite.name)
-                                .frame(width: 400, height: 70)
-                                .background(.brown)
-                                .foregroundColor(.white)
-                                .buttonStyle(BorderlessButtonStyle())
-                        }
-                    }
+                VStack {
+                    Text("No favorites added yet.")
+                    Text("Go find some good breweries!")
                 }
-                .onDelete(perform: { indexSet in
-                    for index in indexSet {
-                        let favorite = favorites[index]
-                        modelContext.delete(favorite)
+            } else {
+                List {
+                    ForEach(favorites) { favorite in
+                        VStack {
+                            Button {
+                                Task {
+                                    try await viewModel.populateSelectedBrewery(breweryId: favorite.id)
+                                    self.selectedBrewery = viewModel.selectedBrewery
+                                }
+                            } label: {
+                                Text(favorite.name)
+                                    .frame(maxWidth: .infinity, minHeight: 75)
+                                    .background(Color.brown)
+                                    .foregroundColor(.white)
+                                    .buttonStyle(BorderlessButtonStyle())
+                            }
+                        }
+                        .alignmentGuide(.listRowSeparatorLeading) { viewDimensions in
+                            return 0
+                        }
+                        .padding(.vertical, 5) // Add padding around the VStack
+                        .listRowBackground(Color.white) // Ensure background color is white
                     }
-                })
+                    .onDelete(perform: { indexSet in
+                        for index in indexSet {
+                            let favorite = favorites[index]
+                            modelContext.delete(favorite)
+                        }
+                    })
+                }
+                .listStyle(PlainListStyle())
+                .sheet(item: $selectedBrewery) { brewery in
+                    BreweryDetailsView(brewery: brewery)
+                }
+                .navigationTitle("Favorite Breweries")
             }
-            .listStyle(PlainListStyle())
-            .sheet(item: $selectedBrewery) { brewery in
-                BreweryDetailsView(brewery: brewery)
-            }
-            .navigationTitle("Favorite Breweries")
         }
     }
 }
+
 
 #Preview {
     FavoritesView(viewModel: BreweriesList(locationManager: CLLocationManager()), favorites: [])
