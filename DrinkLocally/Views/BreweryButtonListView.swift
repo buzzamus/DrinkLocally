@@ -11,21 +11,48 @@ struct BreweryButtonListView: View {
     let breweries: [Brewery]
     @Binding var selectedBrewery: Brewery?
     var body: some View {
-        LazyVStack {
+        LazyVStack(spacing: 0) {
             ForEach(breweries, id: \.self.id) { brewery in
                 Button {
                     self.selectedBrewery = brewery
                 } label: {
                     Text(brewery.name)
-                        .frame(width: 400, height: 70)
+                        .frame(maxWidth: .infinity, minHeight: 70)
                         .background(.brown)
                         .foregroundColor(.white)
                         .buttonStyle(BorderlessButtonStyle())
                 }
+                .padding(.vertical, 0)
+                Divider().background(.black)
             }
         }
     }
 }
+
+
+//struct BreweryButtonListView: View {
+//    let breweries: [Brewery]
+//    @Binding var selectedBrewery: Brewery?
+//    
+//    var body: some View {
+//        List(breweries, id: \.self.id) { brewery in
+//            Button {
+//                self.selectedBrewery = brewery
+//            } label: {
+//                Text(brewery.name)
+//                    .frame(maxWidth: .infinity, minHeight: 70, alignment: .leading)
+//                    .background(Color.brown)
+//                    .foregroundColor(.white)
+//            }
+//            .buttonStyle(BorderlessButtonStyle())
+//            .listRowBackground(Color.brown) // To ensure the button background is consistent
+//        }
+//        .listStyle(PlainListStyle())
+//    }
+//}
+
+
+
 
 // disabled as this child view is previewed/tested within the parent views
 //#Preview {

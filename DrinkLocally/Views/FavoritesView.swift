@@ -16,7 +16,6 @@ struct FavoritesView: View {
     @Environment(\.modelContext) var modelContext
     var body: some View {
         NavigationStack {
-            Divider()
             if favorites.isEmpty {
                 VStack {
                     Text("No favorites added yet.")
@@ -26,6 +25,7 @@ struct FavoritesView: View {
                 List {
                     ForEach(favorites) { favorite in
                         VStack {
+                            Spacer().frame(height: 3)
                             Button {
                                 Task {
                                     try await viewModel.populateSelectedBrewery(breweryId: favorite.id)
@@ -36,14 +36,17 @@ struct FavoritesView: View {
                                     .frame(maxWidth: .infinity, minHeight: 75)
                                     .background(Color.brown)
                                     .foregroundColor(.white)
-                                    .buttonStyle(BorderlessButtonStyle())
                             }
+                            Spacer().frame(height: 3)
                         }
-                        .alignmentGuide(.listRowSeparatorLeading) { viewDimensions in
-                            return 0
-                        }
-                        .padding(.vertical, 5) // Add padding around the VStack
-                        .listRowBackground(Color.white) // Ensure background color is white
+                        .listRowInsets(.init(top: 0,
+                                             leading: 0,
+                                             bottom: 0,
+                                             trailing: 0))
+                        .alignmentGuide(.listRowSeparatorLeading) { _ in 0 }
+                        .listRowSeparatorTint(.black)
+                        .listRowBackground(Color.brown)
+                        .padding([.top, .bottom], 1)
                     }
                     .onDelete(perform: { indexSet in
                         for index in indexSet {
