@@ -10,8 +10,8 @@ import SwiftData
 
 @Model
 final class Favorite {
-    let name: String
-    let id: String
+    var name: String = ""
+    var id: String = ""
     
     init(brewery: Brewery) {
         self.name = brewery.name

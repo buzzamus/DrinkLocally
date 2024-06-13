@@ -6,17 +6,19 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct BreweryButtonListView: View {
     let breweries: [Brewery]
     @Binding var selectedBrewery: Brewery?
+    @Query var favorites: [Favorite]
     var body: some View {
         LazyVStack(spacing: 0) {
             ForEach(breweries, id: \.self.id) { brewery in
                 Button {
                     self.selectedBrewery = brewery
                 } label: {
-                    Text(brewery.name)
+                    buttonDisplayName(brewery: brewery)
                         .frame(maxWidth: .infinity, minHeight: 70)
                         .background(.brown)
                         .foregroundColor(.white)
@@ -25,6 +27,18 @@ struct BreweryButtonListView: View {
                 .padding(.vertical, 0)
                 Divider().background(.black)
             }
+        }
+    }
+    
+    private func buttonDisplayName(brewery: Brewery) -> Text {
+        let favorited = favorites.contains { favorite in
+            favorite.id == brewery.id
+        }
+        
+        if favorited {
+            return Text("\(brewery.name)  \(Image(systemName: "star"))")
+        } else {
+            return Text(brewery.name)
         }
     }
 }
