@@ -7,11 +7,13 @@
 
 import SwiftUI
 import MapKit
+import SwiftData
 
 struct MapView: View {
     @StateObject var viewModel: BreweriesList
     @State private var selectedBrewery: Brewery?
     @State private var networkError = false
+    @Query var favorites: [Favorite]
     var body: some View {
         VStack {
             HeadlineView(headline: "Find Local Breweries")
@@ -19,7 +21,7 @@ struct MapView: View {
             Map {
                 ForEach(viewModel.breweries, id: \.self.id) { brewery in
                     Annotation(brewery.name, coordinate: CLLocationCoordinate2D(latitude: toDouble(coordinate: brewery.latitude ?? "0.0"), longitude: toDouble(coordinate: brewery.longitude ?? "0.0"))) {
-                        Image(systemName: "mappin")
+                        Image(systemName: mapIcon(brewery: brewery))
                             .padding()
                             .background(.red)
                             .clipShape(Circle())
@@ -55,6 +57,18 @@ struct MapView: View {
     
     func toDouble(coordinate: String) -> Double {
         Double(coordinate) ?? 0.0
+    }
+    
+    private func mapIcon(brewery: Brewery) -> String {
+        let favorited = favorites.contains { favorite in
+            favorite.id == brewery.id
+        }
+        
+        if favorited {
+            return "star"
+        } else {
+            return "mappin"
+        }
     }
 }
 
