@@ -18,6 +18,11 @@ struct MapView: View {
         VStack {
             HeadlineView(headline: "Find Local Breweries")
             
+            if networkError {
+                ErrorView(errorMessage: "A network error occurred. Try again later.")
+            }
+
+            
             Map {
                 ForEach(viewModel.breweries, id: \.self.id) { brewery in
                     Annotation(brewery.name, coordinate: CLLocationCoordinate2D(latitude: toDouble(coordinate: brewery.latitude ?? "0.0"), longitude: toDouble(coordinate: brewery.longitude ?? "0.0"))) {
@@ -47,6 +52,27 @@ struct MapView: View {
                         .foregroundColor(.gray)
                 }
                 BreweryButtonListView(breweries: viewModel.breweries, selectedBrewery: $selectedBrewery)
+            }
+            // DRY code also shared in BreweriesListView. Need to consolidate to be reusable
+            .onAppear(perform: viewModel.setupLocationServices)
+            .task {
+                do {
+                    try await viewModel.populateBreweries()
+                } catch {
+                    print(error)
+                    networkError = true
+                }
+            }
+            .onChange(of: viewModel.locationService.currentLocation) {
+                print("current location changed....")
+                Task {
+                    do {
+                        try await viewModel.populateBreweries()
+                    } catch {
+                        print(error)
+                        networkError = true
+                    }
+                }
             }
             HStack {
                 Spacer()
