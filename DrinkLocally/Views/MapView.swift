@@ -13,11 +13,17 @@ struct MapView: View {
     @StateObject var viewModel: BreweriesList
     @State private var selectedBrewery: Brewery?
     @State private var networkError = false
+    @State private var refreshView = false
     @Query var favorites: [Favorite]
+    
     var body: some View {
         VStack {
             HeadlineView(headline: "Find Local Breweries")
             
+            if networkError {
+                ErrorView(errorMessage: "A network error occurred. Try again later.")
+            }
+
             Map {
                 ForEach(viewModel.breweries, id: \.self.id) { brewery in
                     Annotation(brewery.name, coordinate: CLLocationCoordinate2D(latitude: toDouble(coordinate: brewery.latitude ?? "0.0"), longitude: toDouble(coordinate: brewery.longitude ?? "0.0"))) {
@@ -33,6 +39,7 @@ struct MapView: View {
                 }
                 UserAnnotation()
             }
+            .id(refreshView)
             .sheet(item: $selectedBrewery) { brewery in
                 BreweryDetailsView(brewery: brewery)
             }
@@ -47,6 +54,28 @@ struct MapView: View {
                         .foregroundColor(.gray)
                 }
                 BreweryButtonListView(breweries: viewModel.breweries, selectedBrewery: $selectedBrewery)
+            }
+            // DRY code also shared in BreweriesListView. Need to consolidate to be reusable
+            .onAppear(perform: viewModel.setupLocationServices)
+            .task {
+                do {
+                    try await viewModel.populateBreweries()
+                } catch {
+                    print(error)
+                    networkError = true
+                }
+            }
+            .onChange(of: viewModel.locationService.currentLocation) { newLocation in
+                print("current location changed....")
+                refreshView.toggle()
+                Task {
+                    do {
+                        try await viewModel.populateBreweries()
+                    } catch {
+                        print(error)
+                        networkError = true
+                    }
+                }
             }
             HStack {
                 Spacer()
@@ -71,6 +100,7 @@ struct MapView: View {
         }
     }
 }
+
 
 #Preview {
     MapView(viewModel: BreweriesList(locationManager: CLLocationManager()))
