@@ -13,7 +13,9 @@ struct MapView: View {
     @StateObject var viewModel: BreweriesList
     @State private var selectedBrewery: Brewery?
     @State private var networkError = false
+    @State private var refreshView = false
     @Query var favorites: [Favorite]
+    
     var body: some View {
         VStack {
             HeadlineView(headline: "Find Local Breweries")
@@ -22,7 +24,6 @@ struct MapView: View {
                 ErrorView(errorMessage: "A network error occurred. Try again later.")
             }
 
-            
             Map {
                 ForEach(viewModel.breweries, id: \.self.id) { brewery in
                     Annotation(brewery.name, coordinate: CLLocationCoordinate2D(latitude: toDouble(coordinate: brewery.latitude ?? "0.0"), longitude: toDouble(coordinate: brewery.longitude ?? "0.0"))) {
@@ -38,6 +39,7 @@ struct MapView: View {
                 }
                 UserAnnotation()
             }
+            .id(refreshView)
             .sheet(item: $selectedBrewery) { brewery in
                 BreweryDetailsView(brewery: brewery)
             }
@@ -63,8 +65,9 @@ struct MapView: View {
                     networkError = true
                 }
             }
-            .onChange(of: viewModel.locationService.currentLocation) {
+            .onChange(of: viewModel.locationService.currentLocation) { newLocation in
                 print("current location changed....")
+                refreshView.toggle()
                 Task {
                     do {
                         try await viewModel.populateBreweries()
@@ -97,6 +100,7 @@ struct MapView: View {
         }
     }
 }
+
 
 #Preview {
     MapView(viewModel: BreweriesList(locationManager: CLLocationManager()))
