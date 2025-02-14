@@ -9,7 +9,7 @@ import SwiftUI
 import CoreLocation
 
 struct BreweryRefreshView: View {
-    let viewModel: BreweriesList
+    @ObservedObject var viewModel: BreweriesList
     var body: some View {
         ZStack {
             Circle()
@@ -18,11 +18,7 @@ struct BreweryRefreshView: View {
             
             Button(action: {
                 Task {
-                    do {
-                        try await refreshBreweries()
-                    } catch {
-                        print("Error refreshing breweries: \(error)")
-                    }
+                    await refreshBreweries()
                 }
             }) {
                 Image(systemName: "arrow.clockwise")
@@ -34,10 +30,15 @@ struct BreweryRefreshView: View {
         .padding(.trailing, 20)
     }
     
-    private func refreshBreweries() async throws {
-        try await viewModel.populateBreweries()
+    private func refreshBreweries() async {
+        do {
+            try await viewModel.populateBreweries()
+        } catch {
+            print("Error refreshing breweries: \(error)")
+        }
     }
 }
+
 
 #Preview {
     BreweryRefreshView(viewModel: BreweriesList(locationManager: CLLocationManager()))
