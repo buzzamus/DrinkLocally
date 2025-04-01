@@ -33,13 +33,18 @@ class BreweriesList: ObservableObject {
     func populateBreweries() async throws {
         locationService.retrieveLocation()
         self.requestInProgress = true
+        
         guard let url = URL(string: Endpoints.breweriesListBaseURLString + locationString()) else { return }
+        
+        print("***********************************")
+        print(url.absoluteString)
         self.breweries = try await apiClient.fetchBreweries(url: url)
         self.requestInProgress = false
     }
     
     @MainActor
     func populateSelectedBrewery(breweryId: String) async throws {
+        
         guard let url = URL(string: Endpoints.singleBreweryURLString + breweryId) else { return }
         self.selectedBrewery = try await apiClient.fetchSingleBrewery(url: url)
     }

@@ -20,17 +20,19 @@ struct MapView: View {
             
             Map {
                 ForEach(viewModel.breweries, id: \.self.id) { brewery in
-                    Annotation(brewery.name, coordinate: CLLocationCoordinate2D(latitude: toDouble(coordinate: brewery.latitude ?? "0.0"), longitude: toDouble(coordinate: brewery.longitude ?? "0.0"))) {
-                        Image(systemName: mapIcon(brewery: brewery))
-                            .padding()
-                            .background(.red)
-                            .clipShape(Circle())
-                            .onTapGesture {
-                                self.selectedBrewery = brewery
-                            }
-                    }
-                    
+                    let latitude = brewery.latitude ?? 0.0
+                    var longitude: Double = brewery.longitude ?? 0.0
+                        Annotation(brewery.name, coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude)) {
+                            Image(systemName: mapIcon(brewery: brewery))
+                                .padding()
+                                .background(.red)
+                                .clipShape(Circle())
+                                .onTapGesture {
+                                    self.selectedBrewery = brewery
+                                }
+                        }
                 }
+
                 UserAnnotation()
             }
             .sheet(item: $selectedBrewery) { brewery in
