@@ -36,8 +36,6 @@ class BreweriesList: ObservableObject {
         
         guard let url = URL(string: Endpoints.breweriesListBaseURLString + locationString()) else { return }
         
-        print("***********************************")
-        print(url.absoluteString)
         self.breweries = try await apiClient.fetchBreweries(url: url)
         self.requestInProgress = false
     }

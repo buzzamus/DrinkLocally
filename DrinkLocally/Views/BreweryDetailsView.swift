@@ -162,8 +162,8 @@ struct BreweryDetailsView: View {
     }
 }
 
-//struct BreweryDetailsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BreweryDetailsView(brewery: Brewery(id: "1", name: "Riverlands Brewing Company", breweryType: "micro", address1: "1860 Dean St Unit A", address2: nil, address3: nil, city: "Saint Charles", stateProvince: "IL", postalCode: "60174", country: "United States", longitude: -88.3378, latitude: 41.91878, phone: "(630) 549-6293", websiteURL: "riverlandsbrewing.com", state: "IL", street: nil))
-//    }
-//}
+struct BreweryDetailsView_Previews: PreviewProvider {
+    static var previews: some View {
+        BreweryDetailsView(brewery: Brewery(id: "1", name: "Riverlands Brewing Company", breweryType: "micro", address1: "1860 Dean St Unit A", address2: nil, address3: nil, city: "Saint Charles", stateProvince: "IL", postalCode: "60174", country: "United States", phone: "(630) 549-6293", websiteURL: "riverlandsbrewing.com", longitude: -88.3378, latitude: 41.91878, state: "IL", street: nil))
+    }
+}
