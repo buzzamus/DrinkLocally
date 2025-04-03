@@ -13,15 +13,17 @@ struct MapView: View {
     @StateObject var viewModel: BreweriesList
     @State private var selectedBrewery: Brewery?
     @State private var networkError = false
+    @State private var cameraPosition: MapCameraPosition = .automatic
+    @State private var userLocation: CLLocation?
     @Query var favorites: [Favorite]
     var body: some View {
-        VStack {
-            HeadlineView(headline: "Find Local Breweries")
-            
-            Map {
-                ForEach(viewModel.breweries, id: \.self.id) { brewery in
-                    let latitude = brewery.latitude ?? 0.0
-                    var longitude: Double = brewery.longitude ?? 0.0
+        ZStack(alignment: .bottomTrailing) {
+            VStack {
+                HeadlineView(headline: "Find Local Breweries")
+                Map(position: $cameraPosition) {
+                    ForEach(viewModel.breweries, id: \.self.id) { brewery in
+                        let latitude = brewery.latitude ?? 0.0
+                        let longitude: Double = brewery.longitude ?? 0.0
                         Annotation(brewery.name, coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude)) {
                             Image(systemName: mapIcon(brewery: brewery))
                                 .padding()
@@ -31,34 +33,45 @@ struct MapView: View {
                                     self.selectedBrewery = brewery
                                 }
                         }
+                    }
                 }
+                .refreshable {
+                    await refreshBreweries()
+                }
+                .sheet(item: $selectedBrewery) { brewery in
+                    BreweryDetailsView(brewery: brewery)
+                }
+            }
 
-                UserAnnotation()
-            }
-            .sheet(item: $selectedBrewery) { brewery in
-                BreweryDetailsView(brewery: brewery)
-            }
-            .frame(minWidth: 400, maxWidth: 400, minHeight: 300, maxHeight: 350)
-            Spacer()
-            
-            Divider()
-            ScrollView {
-                
-                if viewModel.requestInProgress {
-                    ProgressView("Retrieving Data...")
-                        .foregroundColor(.gray)
+            Button(action: {
+                Task {
+                    await refreshBreweries()
+                    refreshUserLocation()
                 }
-                BreweryButtonListView(breweries: viewModel.breweries, selectedBrewery: $selectedBrewery)
+            }) {
+                Image(systemName: "arrow.clockwise")
+                    .font(.title)
+                    .padding()
+                    .background(Color.brown)
+                    .foregroundColor(.white)
+                    .clipShape(Circle())
+                    .shadow(radius: 5)
             }
-            HStack {
-                Spacer()
-                BreweryRefreshView(viewModel: viewModel)
-            }
+            .padding()
         }
     }
+
     
-    func toDouble(coordinate: String) -> Double {
-        Double(coordinate) ?? 0.0
+    private func refreshBreweries() async {
+        Task {
+            networkError = false
+            do {
+                try await viewModel.populateBreweries()
+            } catch {
+                print("Error refreshing breweries: \(error)")
+                networkError = true
+            }
+        }
     }
     
     private func mapIcon(brewery: Brewery) -> String {
@@ -70,6 +83,18 @@ struct MapView: View {
             return "star"
         } else {
             return "mappin"
+        }
+    }
+    
+    private func refreshUserLocation() {
+        if let latestLocation = viewModel.locationService.currentLocation {
+            userLocation = latestLocation
+            cameraPosition = .region(
+                MKCoordinateRegion(
+                    center: latestLocation.coordinate,
+                    span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+                )
+            )
         }
     }
 }

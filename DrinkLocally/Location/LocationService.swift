@@ -12,6 +12,7 @@ class LocationService: NSObject, ObservableObject {
     @Published var locationManager: CLLocationManager
     @Published private(set) var currentLocation: CLLocation?
     @Published private(set) var permissionGiven = false
+    private var completion: ((CLLocationCoordinate2D?) -> Void)?
     
     init(locationManager: CLLocationManager) {
         self.locationManager = locationManager
@@ -27,6 +28,15 @@ class LocationService: NSObject, ObservableObject {
         }
         if permissionGiven {
             setLocation()
+        }
+    }
+    
+    func getUserLocation() async -> CLLocationCoordinate2D? {
+        return await withCheckedContinuation { continuation in
+            completion = { location in
+                continuation.resume(returning: location)
+            }
+            locationManager.startUpdatingLocation()
         }
     }
     

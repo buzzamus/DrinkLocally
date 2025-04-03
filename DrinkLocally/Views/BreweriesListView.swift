@@ -19,8 +19,7 @@ struct BreweriesListView: View {
             HeadlineView(headline: "Nearby Breweries")
 
             if viewModel.requestInProgress && networkError == false {
-                ProgressView("Retrieving Data...")
-                    .foregroundColor(.gray)
+                ProgressView()
             }
 
             if networkError {
@@ -30,29 +29,11 @@ struct BreweriesListView: View {
             ScrollView {
                 BreweryButtonListView(breweries: viewModel.breweries, selectedBrewery: $selectedBrewery)
             }
+            .refreshable {
+                await refreshBreweries()
+            }
             .sheet(item: $selectedBrewery) { brewery in
                 BreweryDetailsView(brewery: brewery)
-            }
-
-            // Refresh Button Inline
-            HStack {
-                Spacer()
-                Button(action: {
-                    Task {
-                        await refreshBreweries()
-                    }
-                }) {
-                    ZStack {
-                        Circle()
-                            .foregroundColor(.brown)
-                            .frame(width: 50, height: 50)
-
-                        Image(systemName: "arrow.clockwise")
-                            .foregroundColor(.white)
-                    }
-                }
-                .padding(.bottom, 20)
-                .padding(.trailing, 20)
             }
         }
         .onAppear {
@@ -69,11 +50,14 @@ struct BreweriesListView: View {
     }
 
     private func refreshBreweries() async {
-        do {
-            try await viewModel.populateBreweries()
-        } catch {
-            print("Error refreshing breweries: \(error)")
-            networkError = true
+        Task {
+            networkError = false
+            do {
+                try await viewModel.populateBreweries()
+            } catch {
+                print("Error refreshing breweries: \(error)")
+                networkError = true
+            }
         }
     }
 }

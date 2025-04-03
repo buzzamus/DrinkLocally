@@ -47,6 +47,11 @@ class BreweriesList: ObservableObject {
         self.selectedBrewery = try await apiClient.fetchSingleBrewery(url: url)
     }
     
+    @MainActor
+    func getuserLocation() async -> CLLocationCoordinate2D {
+        await locationService.getUserLocation() ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
+    }
+    
     private func locationString() -> String {
         guard let location = locationService.currentLocation else {
             locationError = true
